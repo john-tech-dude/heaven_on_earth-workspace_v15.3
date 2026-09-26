@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Crown-Down Architecture | Heaven on Earth Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========================================
+           PROSPECTUS PREMIUM DESIGN SYSTEM
+           ======================================== */
+        :root {
+            --hoef-bg: #FDFDFB;
+            --hoef-cream: #FAF8F3;
+            --hoef-dark: #1A1A1A;
+            --hoef-navy: #0F172A;
+            --hoef-gold: #BFA15F;
+            --hoef-gold-subtle: rgba(191, 161, 95, 0.12);
+            --hoef-stone: #5C5C5C;
+            --hoef-slate: #475569;
+            --hoef-ink: #333333;
+            --hoef-border: #E8E8E4;
+            --hoef-border-light: #E2E8F0;
+            --hoef-panel: #FFFFFF;
+            --hoef-highlight: #F7F7F5;
+            --hoef-accent: #F1F5F9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* ========================================
+           SLIDE CONTAINER - Premium Card
+           ======================================== */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background: var(--hoef-bg);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 35px 60px 30px;
+            box-shadow: 
+                0 25px 80px rgba(0,0,0,0.12),
+                0 10px 30px rgba(191,161,95,0.08);
+            border-radius: 4px;
+        }
+
+        /* ========================================
+           NAVIGATION & CONTROLS
+           ======================================== */
+        .nav-controls {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .exit-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 14px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 2px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .exit-btn:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            background: rgba(191, 161, 95, 0.05);
+        }
+
+        /* ========================================
+           QUOTE STYLING - Prospectus Style
+           ======================================== */
+        .slide-quote {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            padding: 12px 20px;
+            background: var(--hoef-highlight);
+            border-left: 3px solid var(--hoef-gold);
+            border-radius: 0 4px 4px 0;
+            z-index: 100;
+        }
+
+        .slide-quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--hoef-dark);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .slide-quote-author {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hoef-stone);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--hoef-panel);
+        }
+
+        .btn-icon:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(191,161,95,0.15);
+        }
+
+        .nav-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--hoef-gold);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-left: 8px;
+            border-left: 2px solid var(--hoef-gold);
+        }
+
+        .presenter-toggle {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: var(--hoef-navy);
+            color: var(--hoef-gold);
+            border: 1px solid var(--hoef-gold);
+            padding: 10px 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .presenter-toggle:hover {
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+        }
+
+        .continue-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .continue-btn:hover {
+            background: var(--hoef-dark);
+            color: var(--hoef-gold);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191,161,95,0.25);
+        }
+
+        /* ========================================
+           TYPOGRAPHY - Prospectus Premium
+           ======================================== */
+        .mono { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 10px; 
+            color: var(--hoef-gold); 
+            letter-spacing: 2.5px; 
+            text-transform: uppercase; 
+            font-weight: 600;
+        }
+        
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 30px; 
+            font-weight: 700;
+            margin: 0; 
+            color: var(--hoef-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 22px; 
+            font-weight: 600;
+            margin-bottom: 12px; 
+            color: var(--hoef-dark);
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--hoef-dark);
+        }
+        
+        p, li { 
+            font-family: 'Open Sans', sans-serif; 
+            font-size: 13px; 
+            color: var(--hoef-slate); 
+            line-height: 1.6;
+        }
+        
+        header { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            padding-bottom: 12px;
+        }
+
+        header .mono {
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .intro-text {
+            max-width: 800px; 
+            margin: 8px auto 0;
+            font-style: italic;
+            color: var(--hoef-stone);
+            font-size: 13px;
+        }
+
+        /* ========================================
+           FLOW MAP LAYOUT - Crown-Down Visual
+           ======================================== */
+        .flow-map {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            gap: 2px;
+            justify-content: flex-start;
+            padding-top: 5px;
+        }
+
+        .connector-v { 
+            width: 2px; 
+            height: 18px; 
+            background: var(--hoef-gold);
+            opacity: 0.4;
+        }
+        
+        .connector-h-wrap { 
+            width: 75%; 
+            height: 2px; 
+            background: var(--hoef-gold);
+            opacity: 0.4;
+        }
+        
+        .connector-legs { 
+            display: flex; 
+            justify-content: space-between; 
+            width: 75%; 
+            height: 10px;
+            position: relative;
+        }
+        
+        .leg { 
+            width: 2px; 
+            height: 10px; 
+            background: var(--hoef-gold);
+            opacity: 0.4;
+        }
+
+        /* ========================================
+           ENTITY CARDS - Premium Styling
+           ======================================== */
+        .entity-card {
+            width: 240px;
+            background: var(--hoef-panel);
+            border: 1px solid var(--hoef-border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        .entity-card:hover { 
+            border-color: var(--hoef-gold);
+            box-shadow: 0 12px 35px rgba(191,161,95,0.12);
+            transform: translateY(-3px);
+        }
+
+        /* Border Accents by Entity Type */
+        .crown-box { border-top: 4px solid var(--hoef-gold); }
+        .shield-box { border-left: 4px solid rgba(191,161,95,0.85); }
+        .compass-box { border-left: 4px solid rgba(191,161,95,0.95); }
+        .engine-box { border-left: 4px solid rgba(191,161,95,0.75); }
+        .anchor-box { border-top: 4px solid var(--hoef-gold); }
+
+        .card-header {
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .entity-icon {
+            font-size: 24px;
+            color: var(--hoef-gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-header h3 { 
+            font-size: 16px; 
+            margin: 4px 0 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header .mono {
+            font-size: 9px;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            color: var(--hoef-stone);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: var(--hoef-highlight);
+            padding: 0 20px;
+            text-align: left;
+            border-top: 1px solid transparent;
+        }
+
+        .card-body ul {
+            padding-left: 18px;
+            margin: 10px 0;
+        }
+
+        .card-body li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .card-body li::marker {
+            color: var(--hoef-gold);
+        }
+
+        /* EXPANSION STATE */
+        .entity-card.expanded {
+            width: 560px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            border-color: var(--hoef-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .entity-card.expanded .card-body {
+            max-height: 480px;
+            opacity: 1;
+            padding: 20px;
+            overflow-y: auto;
+            border-top-color: var(--hoef-border);
+        }
+
+        /* Middle Layer Layout */
+        .middle-row {
+            display: flex; 
+            justify-content: space-between; 
+            width: 100%; 
+            padding: 0 40px;
+            margin: 2px 0;
+        }
+
+        /* ========================================
+           PRESENTER NOTES
+           ======================================== */
+        .presenter-note {
+            margin-top: 18px;
+            padding: 16px;
+            background: var(--hoef-panel);
+            border-left: 3px solid var(--hoef-gold);
+            display: none;
+            font-style: italic;
+            font-size: 12px;
+            color: var(--hoef-slate);
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* ========================================
+           PRINT STYLES — Clean PDF Export
+           ======================================== */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            
+            .slide-container {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-after: always;
+                break-after: page;
+            }
+            
+            .presenter-note {
+                display: block !important;
+                border: 1px solid var(--hoef-border) !important;
+                background: #fafafa !important;
+            }
+            
+            .presenter-toggle,
+            .nav-controls {
+                display: none !important;
+            }
+            
+            .entity-card {
+                break-inside: avoid;
+            }
+            
+            .card-body {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+        }
+        
+        .presenter-note strong {
+            color: var(--hoef-dark);
+            font-style: normal;
+        }
+        
+        .show-notes .presenter-note { display: block; }
+
+        /* ========================================
+           GOVERNANCE GRID (Slide 2)
+           ======================================== */
+        .gov-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .gov-box {
+            background: var(--hoef-panel);
+            border: 1px solid var(--hoef-border);
+            border-radius: 6px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .gov-box:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border-color: var(--hoef-gold);
+        }
+
+        .gov-box::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 4px; 
+            height: 100%; 
+            background: var(--hoef-gold);
+            border-radius: 6px 0 0 6px;
+        }
+
+        .gov-box h2 {
+            font-size: 20px;
+            margin-top: 8px;
+        }
+
+        .gov-box.featured {
+            background: var(--hoef-navy);
+        }
+
+        .gov-box.featured::before {
+            background: var(--hoef-gold);
+            width: 4px;
+        }
+
+        .gov-box.featured h2 {
+            color: white;
+        }
+
+        .gov-box.featured p,
+        .gov-box.featured .mono {
+            color: #94a3b8;
+        }
+
+        .gov-box.featured .mono {
+            color: var(--hoef-gold);
+        }
+
+        /* Matrix Tables */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 11px;
+        }
+        
+        .matrix-table th { 
+            background: var(--hoef-navy); 
+            color: white; 
+            padding: 10px; 
+            font-size: 10px; 
+            text-align: left; 
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .matrix-table td { 
+            padding: 10px; 
+            border-bottom: 1px solid var(--hoef-border); 
+            font-size: 11px;
+            color: var(--hoef-slate);
+        }
+
+        .matrix-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* KPI INDICATORS */
+        .kpi-row { 
+            display: flex; 
+            justify-content: space-around; 
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px dashed var(--hoef-border);
+        }
+        
+        .kpi-item { text-align: center; }
+        
+        .kpi-item .val { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 32px; 
+            color: var(--hoef-gold); 
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-item .lab { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 9px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--hoef-stone);
+        }
+
+        .featured .kpi-item .val {
+            color: var(--hoef-gold);
+        }
+
+        .featured .kpi-item .lab {
+            color: #64748b;
+        }
+
+        /* ========================================
+           RESPONSIVE ADJUSTMENTS
+           ======================================== */
+        @media (max-width: 900px) {
+            .slide-container {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                padding: 30px;
+            }
+            
+            .middle-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .gov-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .entity-card.expanded {
+                width: 90%;
+                max-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Crown-Down Architecture -->
+<div class="slide-container" id="slide1">
+    <div class="nav-controls">
+        <div class="nav-left">
+            <a href="index.html" class="btn-icon" title="Close"><i class="fa-solid fa-xmark"></i></a>
+            <div class="nav-label">Part III: Crown-Down Architecture</div>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="exit-btn" onclick="sessionStorage.clear();">Exit</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="mono">Corporate Structure</div>
+        <h1>The Crown-Down Architecture</h1>
+        <p class="intro-text">Five-entity institutional firewall isolating philanthropic assets from commercial operations. Absolute bankruptcy remoteness and mission integrity in perpetuity.</p>
+    </header>
+
+    <div class="flow-map">
+        <!-- THE CROWN -->
+        <div class="entity-card crown-box expanded" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-crown entity-icon"></i>
+                <div class="mono">Apex Entity</div>
+                <h3>THE CROWN</h3>
+                <div class="card-subtitle">South Dakota Perpetual Purpose Trust</div>
+            </div>
+            <div class="card-body">
+                <p><strong>The Sovereign Layer.</strong> The Foundation's ultimate holding vehicle structured as a South Dakota Perpetual Purpose Trust (PPT). South Dakota represents the global gold standard for institutional asset protection.</p>
+                <ul>
+                    <li><strong>Steward-Ownership Model:</strong> Legally separates equitable ownership from management. Locks the mission (the 'Immutable Seed') in perpetuity, strictly prohibiting extraction or sale of core assets.</li>
+                    <li><strong>Bankruptcy Remoteness:</strong> Absolute, legally fortified firewall between capitalized reserves and any downstream commercial operations or liabilities.</li>
+                    <li><strong>Privacy & Tax:</strong> Automatic perpetual sealing of court records. Zero state income tax on undistributed capital.</li>
+                </ul>
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> The irrevocable nature of the PPT is what makes this structure institutionally credible. Unlike typical LLCs that can be pierced, this trust structure is specifically designed to be bankruptcy-remote and is recognized by sophisticated lenders and institutional partners.
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTORS -->
+        <div class="connector-v"></div>
+        <div class="connector-h-wrap"></div>
+        <div class="connector-legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+            <div class="leg"></div>
+        </div>
+
+        <!-- MIDDLE TIER -->
+        <div class="middle-row">
+            
+            <!-- THE SHIELD -->
+            <div class="entity-card shield-box" onclick="toggleEntity(this)">
+                <div class="card-header">
+                    <i class="fa-solid fa-shield-halved entity-icon"></i>
+                    <div class="mono">Asset Fortress</div>
+                    <h3>THE SHIELD</h3>
+                    <div class="card-subtitle">§508(c)(1)(A) IP Custodian</div>
+                </div>
+                <div class="card-body">
+                    <p><strong>The Intellectual Fortress.</strong> A 508(c)(1)(A) religious non-profit holding all trademarks, brand equity, curriculum IP, and blueprints. Intentionally operationally sterile — it owns everything but touches nothing.</p>
+                    <ul>
+                        <li><strong>Asset Protection:</strong> Holds all sanctuary IP, curriculum, and methodologies. Zero commercial debt — completely "clean" entity.</li>
+                        <li><strong>Tax Designation:</strong> Backed by a formal Tax Opinion Letter from a Tier-1 accounting firm (KPMG), ensuring master IP is held in an incontrovertible tax-exempt fortress.</li>
+                        <li><strong>Royalty Revenue:</strong> 5-8% gross revenue royalty from Engine creates sustainable funding without operational liability.</li>
+                    </ul>
+                    <div class="presenter-note">
+                        <strong>Key Point:</strong> The Shield never signs contracts, never employs staff, never operates commercially. This sterility is what protects the IP from any downstream litigation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE COMPASS -->
+            <div class="entity-card compass-box" onclick="toggleEntity(this)">
+                <div class="card-header">
+                    <i class="fa-regular fa-compass entity-icon"></i>
+                    <div class="mono">Fiduciary Governance</div>
+                    <h3>THE COMPASS</h3>
+                    <div class="card-subtitle">Independent Fiduciary Board</div>
+                </div>
+                <div class="card-body">
+                    <p><strong>The Governance Guardian.</strong> An independent Board of Trustees with legally binding fiduciary duty to protect Foundation assets and mission integrity. This eliminates "Founder Whim" and proves institutional governance.</p>
+                    <ul>
+                        <li><strong>Board Powers:</strong> Veto power over all expenditures exceeding $100K, ratification of major contracts, and sole hiring/firing authority over the CFO.</li>
+                        <li><strong>Compensation Governance:</strong> Founders compensated as employees at board-determined rates. No equity interest, no profit participation. Surplus flows 100% back to mission.</li>
+                        <li><strong>Independent Majority:</strong> 5-seat board with 3 independent trustees ensures unbiased oversight.</li>
+                    </ul>
+                    <div class="presenter-note">
+                        <strong>Critical:</strong> The Board's power over CFO hiring and $100K+ expenditures is what gives institutional lenders confidence that capital will be stewarded professionally, not whimsically.
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE ENGINE -->
+            <div class="entity-card engine-box" onclick="toggleEntity(this)">
+                <div class="card-header">
+                    <i class="fa-solid fa-gears entity-icon"></i>
+                    <div class="mono">Risk Isolation</div>
+                    <h3>THE ENGINE</h3>
+                    <div class="card-subtitle">Wyoming LLC (Taxable OpCo)</div>
+                </div>
+                <div class="card-body">
+                    <p><strong>The Commercial Risk Silo.</strong> All retreat operations, employment, and hospitality liability housed in a standalone, taxable Operating Company. Legally isolates the Foundation from commercial exposure.</p>
+                    <ul>
+                        <li><strong>Jurisdictional Defense:</strong> Wyoming LLC provides charging order protection (creditors can't seize assets) and zero state corporate income tax.</li>
+                        <li><strong>Operational Liability:</strong> Signs all employment contracts, assumes all hospitality liability, processes all guest revenue.</li>
+                        <li><strong>Institutional Compliance:</strong> 5-8% gross revenue royalty to Shield backed by OECD arm's-length standards. Secured by $5M key-person insurance per founder.</li>
+                    </ul>
+                    <div class="presenter-note">
+                        <strong>Why Wyoming:</strong> Charging order protection means even if the Engine is sued, creditors can't seize Foundation assets. The corporate veil is the strongest in the U.S.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONNECTOR TO ANCHORS -->
+        <div class="connector-v" style="height: 15px;"></div>
+
+        <!-- THE ANCHORS -->
+        <div class="entity-card anchor-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-anchor entity-icon"></i>
+                <div class="mono">Localized Execution</div>
+                <h3>THE ANCHORS</h3>
+                <div class="card-subtitle">Regional Special Purpose Vehicles (SPV)</div>
+            </div>
+            <div class="card-body">
+                <p><strong>The Local Bridge.</strong> Jurisdiction-specific SPVs handling regional compliance, zoning, and local regulatory requirements. Each operates as an independent legal silo.</p>
+                <ul>
+                    <li><strong>British Columbia Society:</strong> Phase 1 | Operations — Canadian regulatory compliance and local land use.</li>
+                    <li><strong>Thailand BOI Company:</strong> Phase 2 | 8-year 0% tax holiday under Board of Investment incentives.</li>
+                    <li><strong>Bali PT PMA:</strong> Phase 3 | ASEAN corridor access with Indonesian foreign investment status.</li>
+                    <li><strong>Portugal TER:</strong> Phase 3 | EU entry and European grant eligibility.</li>
+                </ul>
+                <p><strong>Submarine Strategy:</strong> Each campus is legally watertight — no cross-collateralization. Localized compliance without affecting the global network.</p>
+                <div class="presenter-note">
+                    <strong>Expansion Logic:</strong> New locations launch as Anchors under Engine's operational umbrella while maintaining local regulatory independence. Failure in one jurisdiction cannot cascade.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="slide-quote">
+        <div class="slide-quote-text">"You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete."</div>
+        <div class="slide-quote-author">— R. Buckminster Fuller</div>
+    </div>
+
+    <button class="presenter-toggle" onclick="toggleNotes()">Toggle Notes</button>
+    
+    <button class="continue-btn" onclick="nextSlide()">
+        Continue: Board Oversight <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+<script>
+    // Entity Card Expansion - Solo Focus Mode
+    function toggleEntity(element) {
+        const cards = element.closest('.slide-container').querySelectorAll('.entity-card');
+        
+        // If already expanded, collapse it
+        if (element.classList.contains('expanded')) {
+            element.classList.remove('expanded');
+            return;
+        }
+
+        // Collapse all cards
+        cards.forEach(card => card.classList.remove('expanded'));
+
+        // Expand the clicked card
+        element.classList.add('expanded');
+    }
+
+    // Presenter Notes Toggle
+    function toggleNotes() {
+        document.body.classList.toggle('show-notes');
+        
+        // Update button text
+        const btn = document.querySelector('.presenter-toggle');
+        if (btn) {
+            const isShowing = document.body.classList.contains('show-notes');
+            btn.textContent = isShowing ? 'Hide Notes' : 'Show Notes';
+        }
+    }
+
+    // Auto-collapse when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.entity-card')) {
+            document.querySelectorAll('.entity-card.expanded').forEach(card => {
+                card.classList.remove('expanded');
+            });
+        }
+    });
+
+    // Escape key to collapse all
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.entity-card.expanded').forEach(card => {
+                card.classList.remove('expanded');
+            });
+        }
+    });
+
+    // Presentation Navigation
+    const presentationSequence = [
+        { name: 'Ecosystem', type: 'page', url: 'ecosystem-dashboard.html' },
+        { name: 'Flagship', type: 'page', url: 'flagship-dashboard.html' },
+        { name: 'Crown-Down', type: 'page', url: 'crowndown-presentation.html' },
+        { name: 'Board Oversight', type: 'page', url: 'board-oversight.html' },
+        { name: 'NGO Partnerships', type: 'page', url: 'ngo-partnerships.html' },
+        { name: 'Closing', type: 'section', id: 'step-8' }
+    ];
+
+    function nextSlide() {
+        const currentIdx = parseInt(sessionStorage.getItem('currentSlide') || '0');
+        const nextIdx = currentIdx + 1;
+        
+        if (nextIdx < presentationSequence.length) {
+            sessionStorage.setItem('currentSlide', nextIdx.toString());
+            const next = presentationSequence[nextIdx];
+            
+            if (next.type === 'page') {
+                window.location.href = next.url;
+            } else if (next.type === 'section') {
+                window.location.href = 'index.html#' + next.id;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
+

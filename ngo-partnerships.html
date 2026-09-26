@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO & Partnership Contracting | Heaven on Earth Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========================================
+           PROSPECTUS PREMIUM DESIGN SYSTEM
+           ======================================== */
+        :root {
+            --hoef-bg: #FDFDFB;
+            --hoef-cream: #FAF8F3;
+            --hoef-dark: #1A1A1A;
+            --hoef-navy: #0F172A;
+            --hoef-gold: #BFA15F;
+            --hoef-gold-subtle: rgba(191, 161, 95, 0.12);
+            --hoef-stone: #5C5C5C;
+            --hoef-slate: #475569;
+            --hoef-ink: #333333;
+            --hoef-border: #E8E8E4;
+            --hoef-border-light: #E2E8F0;
+            --hoef-panel: #FFFFFF;
+            --hoef-highlight: #F7F7F5;
+            --hoef-accent: #F1F5F9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* ========================================
+           SLIDE CONTAINER - Premium Card
+           ======================================== */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background: var(--hoef-bg);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 35px 60px 30px;
+            box-shadow: 
+                0 25px 80px rgba(0,0,0,0.12),
+                0 10px 30px rgba(191,161,95,0.08);
+            border-radius: 4px;
+        }
+
+        /* ========================================
+           NAVIGATION & CONTROLS
+           ======================================== */
+        .nav-controls {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .exit-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 14px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 2px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .exit-btn:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            background: rgba(191, 161, 95, 0.05);
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hoef-stone);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--hoef-panel);
+        }
+
+        .btn-icon:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(191,161,95,0.15);
+        }
+
+        .nav-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--hoef-gold);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-left: 8px;
+            border-left: 2px solid var(--hoef-gold);
+        }
+
+        .presenter-toggle {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: var(--hoef-navy);
+            color: var(--hoef-gold);
+            border: 1px solid var(--hoef-gold);
+            padding: 10px 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .presenter-toggle:hover {
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+        }
+
+        .continue-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .continue-btn:hover {
+            background: var(--hoef-dark);
+            color: var(--hoef-gold);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191,161,95,0.25);
+        }
+
+        /* ========================================
+           TYPOGRAPHY - Prospectus Premium
+           ======================================== */
+        .mono { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 10px; 
+            color: var(--hoef-gold); 
+            letter-spacing: 2.5px; 
+            text-transform: uppercase; 
+            font-weight: 600;
+        }
+        
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 30px; 
+            font-weight: 700;
+            margin: 0; 
+            color: var(--hoef-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        header { 
+            text-align: center; 
+            margin-bottom: 18px; 
+            padding-bottom: 10px;
+        }
+
+        header .mono {
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .intro-text {
+            max-width: 700px; 
+            margin: 6px auto 0;
+            font-style: italic;
+            color: var(--hoef-stone);
+            font-size: 13px;
+        }
+
+        /* ========================================
+           NGO GRID LAYOUT - 2x2
+           ======================================== */
+        .ngo-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 18px;
+            padding: 8px 40px 140px;
+            position: relative;
+        }
+
+        /* ========================================
+           NGO CARDS
+           ======================================== */
+        .ngo-card {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(250,250,248,0.95) 100%),
+                var(--hoef-panel);
+            background-blend-mode: overlay;
+            border: 1px solid var(--hoef-border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ngo-card:hover {
+            border-color: var(--hoef-gold);
+            box-shadow: 0 12px 35px rgba(191,161,95,0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Border Accents */
+        .contracting-box { border-top: 4px solid #2E5C8A; }
+        .pricing-box { border-top: 4px solid #4A7C59; }
+        .matrix-box { border-top: 4px solid #8B5A2B; }
+        .nexus-box { border-top: 4px solid #C9A227; }
+
+        .card-header {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .entity-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .contracting-box .entity-icon { color: #2E5C8A; }
+        .pricing-box .entity-icon { color: #4A7C59; }
+        .matrix-box .entity-icon { color: #8B5A2B; }
+        .nexus-box .entity-icon { color: #C9A227; }
+
+        .card-header h3 {
+            font-size: 15px;
+            margin: 4px 0 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header .mono {
+            font-size: 9px;
+            margin-bottom: 3px;
+        }
+
+        .card-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: var(--hoef-highlight);
+            padding: 0 18px;
+            text-align: left;
+            border-top: 1px solid transparent;
+            flex: 1;
+        }
+
+        .card-body ul {
+            padding-left: 16px;
+            margin: 8px 0;
+        }
+
+        .card-body li {
+            margin-bottom: 5px;
+            position: relative;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .card-body li::marker {
+            color: var(--hoef-gold);
+        }
+
+        .card-body strong {
+            color: var(--hoef-dark);
+        }
+
+        /* EXPANSION STATE */
+        .ngo-card.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 680px;
+            max-height: 80vh;
+            z-index: 1000;
+            border-color: var(--hoef-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .ngo-card.expanded .card-body {
+            max-height: 60vh;
+            opacity: 1;
+            padding: 18px;
+            overflow-y: auto;
+            border-top-color: var(--hoef-border);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ========================================
+           MATRIX TABLE
+           ======================================== */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+            margin: 10px 0;
+        }
+
+        .matrix-table th {
+            background: var(--hoef-dark);
+            color: var(--hoef-gold);
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: 500;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .matrix-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--hoef-border);
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background: var(--hoef-highlight);
+        }
+
+        /* ========================================
+           KPI ROWS
+           ======================================== */
+        .kpi-row {
+            display: flex;
+            gap: 16px;
+            margin: 12px 0;
+            padding: 12px;
+            background: var(--hoef-bg);
+            border-radius: 4px;
+            border: 1px solid var(--hoef-border);
+        }
+
+        .kpi-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .kpi-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--hoef-dark);
+            line-height: 1;
+        }
+
+        .kpi-lab {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           PRESENTER NOTES
+           ======================================== */
+        .presenter-note {
+            margin-top: 14px;
+            padding: 12px;
+            background: var(--hoef-panel);
+            border-left: 3px solid var(--hoef-gold);
+            display: none;
+            font-style: italic;
+            font-size: 11px;
+            color: var(--hoef-slate);
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .presenter-note strong {
+            color: var(--hoef-dark);
+            font-style: normal;
+        }
+        
+        .show-notes .presenter-note { display: block; }
+
+        /* ========================================
+           QUOTE STYLING
+           ======================================== */
+        .slide-quote {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            padding: 16px 24px;
+            background: var(--hoef-highlight);
+            border-left: 3px solid var(--hoef-gold);
+            border-radius: 0 4px 4px 0;
+            z-index: 100;
+        }
+
+        .slide-quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--hoef-dark);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .slide-quote-author {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ========================================
+           PRINT STYLES
+           ======================================== */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            
+            .slide-container {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-after: always;
+            }
+            
+            .presenter-note {
+                display: block !important;
+                border: 1px solid var(--hoef-border) !important;
+                background: #fafafa !important;
+            }
+            
+            .presenter-toggle,
+            .continue-btn,
+            .nav-controls {
+                display: none !important;
+            }
+            
+            .ngo-card {
+                break-inside: avoid;
+                border: 1px solid #ddd !important;
+            }
+            
+            .card-body {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+            
+            .ngo-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE ADJUSTMENTS
+           ======================================== */
+        @media (max-width: 900px) {
+            .slide-container {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                padding: 30px;
+            }
+            
+            .ngo-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                padding: 10px 20px 80px;
+            }
+            
+            .ngo-card.expanded {
+                width: 90%;
+                max-width: 500px;
+            }
+            
+            .continue-btn {
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="collapseAll()"></div>
+
+<!-- SLIDE: NGO & Partnership Contracting -->
+<div class="slide-container" id="ngo-slide">
+    <div class="nav-controls">
+        <div class="nav-left">
+            <a href="index.html" class="btn-icon" title="Close"><i class="fa-solid fa-xmark"></i></a>
+            <div class="nav-label">Part V: NGO & Partnerships</div>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="exit-btn" onclick="sessionStorage.clear();">Exit</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="mono">Institutional Partnerships</div>
+        <h1>NGO & Partnership Contracting</h1>
+        <p class="intro-text">Institutional-grade partnership architecture with OECD-compliant transfer pricing, IP quarantine protocols, and U.S. Resident Trustee oversight.</p>
+    </header>
+
+    <div class="ngo-grid">
+        
+        <!-- 01: CONTRACTING FRAMEWORK -->
+        <div class="ngo-card contracting-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-file-contract entity-icon"></i>
+                <div class="mono">01 — Legal Structure</div>
+                <h3>CONTRACTING FRAMEWORK</h3>
+                <div class="card-subtitle">OECD-Compliant Transfer Pricing</div>
+            </div>
+            <div class="card-body">
+                <p><strong>Arm's-Length Partnership Structure:</strong> All NGO partnerships utilize market-standard royalty mechanisms with strict liability isolation. No joint ventures. No shared ownership. Clean contractual boundaries.</p>
+
+                <p style="margin-top: 10px;"><strong>Core Protections:</strong></p>
+                <ul>
+                    <li><strong>"No Joint Venture" Clause:</strong> Explicitly prevents partnership characterization—only licensor-licensee relationship</li>
+                    <li><strong>IP Quarantine:</strong> Third parties receive non-transferable, revocable licenses for specific programmatic deployment only</li>
+                    <li><strong>OECD Transfer Pricing:</strong> 5-8% royalty band (validated by benchmarking studies against comparable educational/spiritual institutions)</li>
+                    <li><strong>Liability Firewall:</strong> Separate legal entities prevent operational risks from affecting Foundation assets</li>
+                </ul>
+
+                <p style="margin-top: 10px;"><strong>Audit & Compliance:</strong> Annual third-party verification of arm's-length compliance. Full documentation for IRS and lender review.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> The OECD 5-8% royalty band is institutionally validated. Kingship Manna at 6% (midpoint) demonstrates market-standard compensation. The "No Joint Venture" clause is critical—prevents lenders from worrying about hidden partnership liabilities. IP quarantine means Foundation owns all curriculum, branding, and methodology.
+                </div>
+            </div>
+        </div>
+
+        <!-- 02: PRICING BENCHMARKS -->
+        <div class="ngo-card pricing-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-scale-balanced entity-icon"></i>
+                <div class="mono">02 — Market Data</div>
+                <h3>PRICING BENCHMARKS</h3>
+                <div class="card-subtitle">Global Royalty Comparables</div>
+            </div>
+            <div class="card-body">
+                <p><strong>OECD Band Validation:</strong> Third-party analysis of 30 comparable spiritual/educational institutions confirms the 5-8% royalty band reflects market-standard practice.</p>
+
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Benchmark</th>
+                            <th>Royalty Rate</th>
+                            <th>Context</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Esalen Institute</td>
+                            <td>6-9%</td>
+                            <td>Wellness program licensing</td>
+                        </tr>
+                        <tr>
+                            <td>Kripalu Center</td>
+                            <td>5-7%</td>
+                            <td>Yoga teacher training</td>
+                        </tr>
+                        <tr>
+                            <td>Omega Institute</td>
+                            <td>5-8%</td>
+                            <td>Retreat program IP</td>
+                        </tr>
+                        <tr>
+                            <td>1440 Multiversity</td>
+                            <td>6-8%</td>
+                            <td>Corporate wellness</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 10px;"><strong>Kingship Manna Implementation:</strong></p>
+                <div class="kpi-row">
+                    <div class="kpi-item">
+                        <div class="kpi-val">6%</div>
+                        <div class="kpi-lab">Base Royalty</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-val">7.5%</div>
+                        <div class="kpi-lab">Scale Trigger</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-val">$0</div>
+                        <div class="kpi-lab">IP Transfer</div>
+                    </div>
+                </div>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> The 0% IP transfer value is intentional—Foundation never sells ownership. Rate escalates to 7.5% only if partner exceeds $500K annual revenue (rewarding scale). All comparables are established non-profits with similar mission orientation and programmatic licensing models.
+                </div>
+            </div>
+        </div>
+
+        <!-- 03: APPROVAL MATRIX -->
+        <div class="ngo-card matrix-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-gavel entity-icon"></i>
+                <div class="mono">03 — Governance</div>
+                <h3>APPROVAL MATRIX</h3>
+                <div class="card-subtitle">Four-Tier Risk Classification</div>
+            </div>
+            <div class="card-body">
+                <p><strong>Contractual Authority Thresholds:</strong> Risk-based oversight ensuring appropriate governance based on financial exposure and IP implications.</p>
+
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Threshold</th>
+                            <th>Approval Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Standard</strong></td>
+                            <td>&lt; $25,000</td>
+                            <td>CFO + 1 Trustee</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Material</strong></td>
+                            <td>$25K – $100K</td>
+                            <td>Board Majority (3/5)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Major</strong></td>
+                            <td>&gt; $100K or IP</td>
+                            <td>Supermajority (4/5) + U.S. Trustee</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategic</strong></td>
+                            <td>&gt; $250K</td>
+                            <td>Unanimous + U.S. Resident Quorum</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 10px;"><strong>U.S. Resident Trustee Requirement:</strong> Hardcoded oversight for major decisions ensures domestic tax-exempt "Mind and Management" continuity—critical for §508(c)(1)(A) status.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> The U.S. Resident Trustee requirement for Major/Strategic tiers is what preserves tax-exempt status. IRS requires domestic "Mind and Management" control. This prevents any appearance that international partners control the Foundation. Supermajority (4/5) means no single founder can unilaterally commit the organization.
+                </div>
+            </div>
+        </div>
+
+        <!-- 04: INSTITUTIONAL NEXUS -->
+        <div class="ngo-card nexus-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-handshake entity-icon"></i>
+                <div class="mono">04 — Case Study</div>
+                <h3>INSTITUTIONAL NEXUS</h3>
+                <div class="card-subtitle">Kingship Manna Coalition</div>
+            </div>
+            <div class="card-body">
+                <p><strong>Template for All Future IP Relationships:</strong> Zero ownership transfer—only limited, revocable license for programmatic deployment. Mandatory U.S. Resident Trustee oversight ensures domestic tax-exempt "Mind and Management" continuity.</p>
+
+                <p style="margin-top: 10px;"><strong>Structural Safeguards:</strong></p>
+                <ul>
+                    <li><strong>Zero Ownership Transfer:</strong> All proprietary methodologies remain exclusive Foundation IP in perpetuity</li>
+                    <li><strong>Limited Usage Rights:</strong> Non-transferable, non-sublicensable, revocable licenses only</li>
+                    <li><strong>Quality Control:</strong> Foundation maintains standards through certification requirements and annual audits</li>
+                    <li><strong>Termination Rights:</strong> License revocable if partner fails to meet operational or ethical standards</li>
+                    <li><strong>U.S. Resident Oversight:</strong> Mandatory participation of U.S. Resident Trustee in all IP decisions</li>
+                </ul>
+
+                <p style="margin-top: 10px;"><strong>Financial Structure:</strong></p>
+                <ul>
+                    <li><strong>Base Royalty:</strong> 6% of gross revenue from programs utilizing Foundation curriculum</li>
+                    <li><strong>Performance Adjustment:</strong> Rate escalates to 7.5% if partner exceeds $500K annual revenue</li>
+                    <li><strong>Minimum Guarantee:</strong> $12,000/year floor ensuring Foundation cost coverage</li>
+                    <li><strong>Audit Rights:</strong> Foundation retains right to inspect partner books with 30-day notice</li>
+                </ul>
+
+                <p style="margin-top: 10px; font-size: 11px; color: var(--hoef-stone);"><strong>Template Status:</strong> Kingship Manna structure serves as binding template for all future NGO partnerships. Material deviations require Board resolution.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> Kingship Manna demonstrates the full framework in operation: OECD-compliant pricing, IP quarantine, U.S. Resident oversight, and documented audit rights. The revocable nature protects Foundation—if partner acts against mission or quality standards, license terminates. This is not a joint venture; it's a controlled, monitored, arm's-length relationship.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Quote -->
+    <div class="slide-quote">
+        <div class="slide-quote-text">"Coming together is a beginning; keeping together is progress; working together is success."</div>
+        <div class="slide-quote-author">— Henry Ford</div>
+    </div>
+
+    <button class="presenter-toggle" onclick="toggleNotes()">Show Notes</button>
+    
+    <button class="continue-btn" onclick="nextSlide()">
+        Continue: The Closing <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+<script>
+    // Entity Card Expansion - Solo Focus Mode
+    function toggleEntity(element) {
+        const overlay = document.getElementById('overlay');
+        const cards = document.querySelectorAll('.ngo-card');
+        
+        // If already expanded, collapse it
+        if (element.classList.contains('expanded')) {
+            element.classList.remove('expanded');
+            overlay.classList.remove('active');
+            return;
+        }
+
+        // Collapse all cards
+        cards.forEach(card => card.classList.remove('expanded'));
+        
+        // Show overlay
+        overlay.classList.add('active');
+
+        // Expand the clicked card
+        element.classList.add('expanded');
+    }
+
+    function collapseAll() {
+        const overlay = document.getElementById('overlay');
+        document.querySelectorAll('.ngo-card.expanded').forEach(card => {
+            card.classList.remove('expanded');
+        });
+        overlay.classList.remove('active');
+    }
+
+    // Presenter Notes Toggle
+    function toggleNotes() {
+        document.body.classList.toggle('show-notes');
+        
+        // Update button text
+        const btn = document.querySelector('.presenter-toggle');
+        if (btn) {
+            const isShowing = document.body.classList.contains('show-notes');
+            btn.textContent = isShowing ? 'Hide Notes' : 'Show Notes';
+        }
+    }
+
+    // Escape key to collapse all
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            collapseAll();
+        }
+    });
+
+    // Presentation Navigation
+    const presentationSequence = [
+        { name: 'Ecosystem', type: 'page', url: 'ecosystem-dashboard.html' },
+        { name: 'Flagship', type: 'page', url: 'flagship-dashboard.html' },
+        { name: 'Crown-Down', type: 'page', url: 'crowndown-presentation.html' },
+        { name: 'Board Oversight', type: 'page', url: 'board-oversight.html' },
+        { name: 'NGO Partnerships', type: 'page', url: 'ngo-partnerships.html' },
+        { name: 'Closing', type: 'section', id: 'step-8' }
+    ];
+
+    function nextSlide() {
+        const currentIdx = parseInt(sessionStorage.getItem('currentSlide') || '0');
+        const nextIdx = currentIdx + 1;
+        
+        if (nextIdx < presentationSequence.length) {
+            sessionStorage.setItem('currentSlide', nextIdx.toString());
+            const next = presentationSequence[nextIdx];
+            
+            if (next.type === 'page') {
+                window.location.href = next.url;
+            } else if (next.type === 'section') {
+                window.location.href = 'index.html#' + next.id;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ecosystem | Heaven on Earth Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========================================
+           PROSPECTUS PREMIUM DESIGN SYSTEM
+           ======================================== */
+        :root {
+            --hoef-bg: #FDFDFB;
+            --hoef-cream: #FAF8F3;
+            --hoef-dark: #1A1A1A;
+            --hoef-navy: #0F172A;
+            --hoef-gold: #BFA15F;
+            --hoef-gold-subtle: rgba(191, 161, 95, 0.12);
+            --hoef-stone: #5C5C5C;
+            --hoef-slate: #475569;
+            --hoef-ink: #333333;
+            --hoef-border: #E8E8E4;
+            --hoef-border-light: #E2E8F0;
+            --hoef-panel: #FFFFFF;
+            --hoef-highlight: #F7F7F5;
+            --hoef-accent: #F1F5F9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* ========================================
+           SLIDE CONTAINER - Premium Card
+           ======================================== */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background: var(--hoef-bg);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 35px 60px 30px;
+            box-shadow: 
+                0 25px 80px rgba(0,0,0,0.12),
+                0 10px 30px rgba(191,161,95,0.08);
+            border-radius: 4px;
+        }
+
+        /* ========================================
+           NAVIGATION & CONTROLS
+           ======================================== */
+        .nav-controls {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .exit-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 14px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 2px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .exit-btn:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            background: rgba(191, 161, 95, 0.05);
+        }
+
+        /* ========================================
+           QUOTE STYLING - Prospectus Style
+           ======================================== */
+        .slide-quote {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            padding: 16px 24px;
+            background: var(--hoef-highlight);
+            border-left: 3px solid var(--hoef-gold);
+            border-radius: 0 4px 4px 0;
+            z-index: 100;
+            margin: 20px auto;
+            clear: both;
+        }
+
+        .slide-quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--hoef-dark);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .slide-quote-author {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hoef-stone);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--hoef-panel);
+        }
+
+        .btn-icon:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(191,161,95,0.15);
+        }
+
+        .nav-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--hoef-gold);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-left: 8px;
+            border-left: 2px solid var(--hoef-gold);
+        }
+
+        .presenter-toggle {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: var(--hoef-navy);
+            color: var(--hoef-gold);
+            border: 1px solid var(--hoef-gold);
+            padding: 10px 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .presenter-toggle:hover {
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+        }
+
+        .continue-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .continue-btn:hover {
+            background: var(--hoef-dark);
+            color: var(--hoef-gold);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191,161,95,0.25);
+        }
+
+        /* ========================================
+           TYPOGRAPHY - Prospectus Premium
+           ======================================== */
+        .mono { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 10px; 
+            color: var(--hoef-gold); 
+            letter-spacing: 2.5px; 
+            text-transform: uppercase; 
+            font-weight: 600;
+        }
+        
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 30px; 
+            font-weight: 700;
+            margin: 0; 
+            color: var(--hoef-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 22px; 
+            font-weight: 600;
+            margin-bottom: 12px; 
+            color: var(--hoef-dark);
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--hoef-dark);
+        }
+        
+        p, li { 
+            font-family: 'Open Sans', sans-serif; 
+            font-size: 13px; 
+            color: var(--hoef-slate); 
+            line-height: 1.6;
+        }
+        
+        header { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            padding-bottom: 12px;
+        }
+
+        header .mono {
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .intro-text {
+            max-width: 700px; 
+            margin: 8px auto 0;
+            font-style: italic;
+            color: var(--hoef-stone);
+            font-size: 13px;
+        }
+
+        /* ========================================
+           PILLARS GRID LAYOUT - 2x2 Desktop
+           ======================================== */
+        .pillars-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            padding: 10px 40px 60px;
+            position: relative;
+        }
+
+        /* ========================================
+           ENTITY CARDS - Premium Styling
+           ======================================== */
+        .entity-card {
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(250,250,248,0.95) 100%),
+                var(--hoef-panel);
+            background-blend-mode: overlay;
+            border: 1px solid var(--hoef-border);
+            border-radius: 6px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .entity-card:hover { 
+            border-color: var(--hoef-gold);
+            box-shadow: 0 12px 35px rgba(191,161,95,0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Subtle grain texture overlay */
+        .entity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            border-radius: 6px;
+            z-index: 1;
+        }
+
+        .entity-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Border Accents by Pillar */
+        .farm-box { border-top: 4px solid #4a7c59; }
+        .body-box { border-top: 4px solid #8b5a2b; }
+        .spirit-box { border-top: 4px solid #c9a227; }
+        .integration-box { border-top: 4px solid #5b7c99; }
+
+        .card-header {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .entity-icon {
+            font-size: 32px;
+            color: var(--hoef-gold);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .farm-box .entity-icon { color: #4a7c59; }
+        .body-box .entity-icon { color: #8b5a2b; }
+        .spirit-box .entity-icon { color: #c9a227; }
+        .integration-box .entity-icon { color: #5b7c99; }
+
+        .card-header h3 { 
+            font-size: 18px; 
+            margin: 6px 0 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header .mono {
+            font-size: 9px;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--hoef-stone);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: var(--hoef-highlight);
+            padding: 0 20px;
+            text-align: left;
+            border-top: 1px solid transparent;
+            flex: 1;
+        }
+
+        .card-body ul {
+            padding-left: 18px;
+            margin: 10px 0;
+        }
+
+        .card-body li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .card-body li::marker {
+            color: var(--hoef-gold);
+        }
+
+        .card-body strong {
+            color: var(--hoef-dark);
+        }
+
+        /* EXPANSION STATE */
+        .entity-card.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            max-height: 80vh;
+            z-index: 1000;
+            border-color: var(--hoef-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .entity-card.expanded .card-body {
+            max-height: 60vh;
+            opacity: 1;
+            padding: 20px;
+            overflow-y: auto;
+            border-top-color: var(--hoef-border);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ========================================
+           PRESENTER NOTES
+           ======================================== */
+        .presenter-note {
+            margin-top: 16px;
+            padding: 14px;
+            background: var(--hoef-panel);
+            border-left: 3px solid var(--hoef-gold);
+            display: none;
+            font-style: italic;
+            font-size: 12px;
+            color: var(--hoef-slate);
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .presenter-note strong {
+            color: var(--hoef-dark);
+            font-style: normal;
+        }
+        
+        .show-notes .presenter-note { display: block; }
+
+        /* ========================================
+           PRINT STYLES — Clean PDF Export
+           ======================================== */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            
+            .slide-container {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-after: always;
+                break-after: page;
+            }
+            
+            .presenter-note {
+                display: block !important;
+                border: 1px solid var(--hoef-border) !important;
+                background: #fafafa !important;
+            }
+            
+            .presenter-toggle,
+            .continue-btn,
+            .nav-controls {
+                display: none !important;
+            }
+            
+            .entity-card {
+                break-inside: avoid;
+                border: 1px solid #ddd !important;
+            }
+            
+            .card-body {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+            
+            .pillars-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE ADJUSTMENTS
+           ======================================== */
+        @media (max-width: 900px) {
+            .slide-container {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                padding: 30px;
+            }
+            
+            .pillars-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                padding: 10px 20px 80px;
+            }
+            
+            .entity-card.expanded {
+                width: 90%;
+                max-width: 500px;
+            }
+            
+            .continue-btn {
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="collapseAll()"></div>
+
+<!-- SLIDE: The Ecosystem -->
+<div class="slide-container" id="ecosystem-slide">
+    <div class="nav-controls">
+        <div class="nav-left">
+            <a href="index.html" class="btn-icon" title="Close"><i class="fa-solid fa-xmark"></i></a>
+            <div class="nav-label">Part I: The Ecosystem</div>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="exit-btn" onclick="sessionStorage.clear();">Exit</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="mono">The Four Pillars</div>
+        <h1>The Ecosystem</h1>
+        <p class="intro-text">A closed-loop ecosystem designed to restore the whole organism—body, mind, and spirit.</p>
+    </header>
+
+    <div class="pillars-grid">
+        
+        <!-- 01: HEAVEN ON EARTH FARM -->
+        <div class="entity-card farm-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-seedling entity-icon"></i>
+                <div class="mono">01 — The Land</div>
+                <h3>HEAVEN ON EARTH FARM</h3>
+                <div class="card-subtitle">Regenerative Biointensive Cultivation</div>
+            </div>
+            <div class="card-body">
+                <p>A fully integrated regenerative ecosystem serving as the nutritional foundation, cost-offset engine, and living classroom. The farm generates both <strong>internal savings</strong> (eliminating food cost markups) and <strong>external revenue</strong> (CSA memberships, value-added retail).</p>
+                
+                <p style="margin-top: 12px;"><strong>Biointensive Regenerative Cultivation:</strong></p>
+                <ul>
+                    <li>Deep soil preparation and hyper-dense companion planting produce <strong>2-6x more food</strong> than commercial agriculture per square foot</li>
+                    <li>Closed-loop water catchment reduces external dependency by <strong>70%+</strong></li>
+                    <li><strong>$300,000 annual savings</strong> vs. external premium food vendors</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>Hybrid Hydroponic System:</strong></p>
+                <ul>
+                    <li><strong>Deep Water Culture (DWC):</strong> Bulk leafy greens for dining hall operations. Large water volume buffers temperature and pH fluctuation—forgiving to operate, highly scalable.</li>
+                    <li><strong>Vertical NFT Channels:</strong> High-value herbs and microgreens—the highest-margin hydroponic crops at up to <strong>40% profit margin</strong>. Stacked vertically to maximize footprint with up to 12 crop rotations per year.</li>
+                    <li><strong>Strategic Consideration:</strong> Future evaluation of AI-Driven Automation to optimize growing conditions and harvest predictability.</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>Six Revenue Streams:</strong> Community Supported Agriculture (CSA), Community Kitchen, Value-Added Products (fermented vegetables, herbal tinctures), Agritourism & Education, Corporate CSA Programs, and Work-Trade Program.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> This pillar eliminates food costs while generating revenue. The $300K savings is direct DSCR improvement. Multiple income streams from one asset: diversified income reduces risk vs. single-source food vendor. The Farm operates on gift economy principles—CSA shares on sliding scale ensure access regardless of ability to pay. Corporate CSA contracts subsidize community programs.
+                </div>
+            </div>
+        </div>
+
+        <!-- 02: THE SCHOOL OF LIVING -->
+        <div class="entity-card body-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-heart-pulse entity-icon"></i>
+                <div class="mono">02 — The Body</div>
+                <h3>THE SCHOOL OF LIVING</h3>
+                <div class="card-subtitle">Biological Original Design</div>
+            </div>
+            <div class="card-body">
+                <p><strong>The Body:</strong> A practical curriculum designed to restore biological Original Design and build immense cellular resilience. This department creates a stable physiological foundation for advanced contemplative work.</p>
+
+                <p style="margin-top: 12px;"><strong>Core Curriculum:</strong></p>
+                <ul>
+                    <li><strong>Nutritional Reset:</strong> Combines ancestral nutrition principles with structured metabolic and intermittent fasting protocols to promote cellular autophagy, improve metabolic flexibility, and correct nutrient deficiencies common in modern diets</li>
+                    <li><strong>Cellular Conditioning:</strong> Employs contrast therapy (sauna and cold plunge cycles) and photobiomodulation (red and near-infrared light) to stimulate mitochondrial biogenesis, reduce inflammation, and enhance cellular repair mechanisms</li>
+                    <li><strong>Somatic Regulation:</strong> Integrates somatic movement practices and transformational breathwork to release stored trauma in the body, regulate the nervous system, and improve vagal tone</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>Integration & Tracking:</strong> This pillar operates in close integration with the Heaven on Earth Farm (providing the actual food) and the Healing Center (for clinical oversight). Outcomes are tracked through HRV measurements and participant self-reports.</p>
+
+                <p style="margin-top: 12px; font-size: 12px; color: var(--hoef-stone);"><strong>Outcomes:</strong> Metabolic flexibility, reduced inflammation, improved mitochondrial function, trauma release, enhanced vagal tone, somatic resilience.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> Creates the physical foundation for contemplative work. You cannot do deep spiritual work if your body is inflamed and traumatized. This pillar integrates with Farm (food supply) and Healing Center (clinical oversight); creates measurable biometric outcomes. HRV tracking proves outcomes to institutional funders. Biological Original Design = restoring the body to its evolved, optimal state before modern lifestyle damage.
+                </div>
+            </div>
+        </div>
+
+        <!-- 03: THE ENLIGHTENMENT CENTER -->
+        <div class="entity-card spirit-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <!-- Zen Enso SVG -->
+                <svg class="entity-icon" viewBox="0 0 100 100" style="width: 32px; height: 32px; margin-bottom: 12px;">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#c9a227" stroke-width="2.5" opacity="0.15"/>
+                    <path d="M50 18 C75 18, 82 40, 82 52 C82 72, 65 82, 50 82 C30 82, 22 68, 22 52 C22 30, 35 18, 50 18" 
+                          fill="none" stroke="#c9a227" stroke-width="3" stroke-linecap="round" 
+                          style="filter: drop-shadow(0 1px 2px rgba(201,162,39,0.3));"/>
+                    <path d="M48 20 Q65 22, 72 35 T75 55 Q75 70, 60 78 T35 75 Q20 65, 22 45 T35 22" 
+                          fill="none" stroke="#c9a227" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+                </svg>
+                <div class="mono">03 — The Spirit</div>
+                <h3>THE ENLIGHTENMENT CENTER</h3>
+                <div class="card-subtitle">Communication Dyad Methodology</div>
+            </div>
+            <div class="card-body">
+                <p>The contemplative core facilitating the direct experience of truth and radical self-realization. This pillar operationalizes <strong>Enlightenment Intensives</strong> using the Communication Dyad, with <strong>Sliding Scale Access</strong> funding democratic access.</p>
+
+                <p style="margin-top: 12px;"><strong>The Core Practice:</strong></p>
+                <ul>
+                    <li><strong>The Communication Dyad:</strong> A rigorous peer-to-peer technique alternating non-judgmental, receptive listening with active contemplation of fundamental questions ("Who am I?")</li>
+                    <li><strong>The Intensive Container:</strong> Distraction-free environment (6am-10pm) combining timed dyad exercises, walking contemplation, and noble silence to clear mental machinery</li>
+                    <li><strong>Facilitation Standard:</strong> Delivered exclusively by Senior Facilitators with 2,000+ hour certification ensuring safety and standardized outcomes</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>Sliding Scale Access Model:</strong></p>
+                <ul>
+                    <li><strong>Standard 3-Day Intensive:</strong> $420–$775 per participant</li>
+                    <li><strong>Full-Rate/Specialized Intensives:</strong> $1,500–$7,225+ per stay</li>
+                    <li><strong>Pay It Forward Segment:</strong> Full-rate pricing supports overall program sustainability</li>
+                    <li>Partnership funding and grants enable Community Rate access for underserved populations</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>The 2,000-Hour Mastery Path:</strong></p>
+                <ul>
+                    <li><strong>Guru Risk Elimination:</strong> Spiritual sector plagued by personality-dependent operations that collapse when founders exit</li>
+                    <li><strong>Codified 4-tier progression:</strong> 200 → 500 → 1,000 → 2,000 hours with documented competencies</li>
+                    <li><strong>Quality Assurance:</strong> Senior Facilitators only (2,000+ hours) deliver high-intensity containers</li>
+                    <li><strong>Scalability:</strong> Pipeline produces enough certified Masters to staff multiple international locations</li>
+                </ul>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> Premium pricing funds sliding scale access—every full-rate participant subsidizes underserved populations. The 2,000-hour mastery pipeline proves scalability beyond founder dependence, eliminating "guru risk" that collapses personality-dependent retreats. Standardized training ensures consistent delivery quality across all locations. This is franchise-ready architecture, not founder-dependent retreat model.
+                </div>
+            </div>
+        </div>
+
+        <!-- 04: THE HEALING CENTER -->
+        <div class="entity-card integration-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-hand-holding-heart entity-icon"></i>
+                <div class="mono">04 — The Integration</div>
+                <h3>THE HEALING CENTER</h3>
+                <div class="card-subtitle">Clinical Somatic Regulation</div>
+            </div>
+            <div class="card-body">
+                <p>A comprehensive healing arts and somatic wellness space providing <strong>clinical integration</strong> through thermal contrast therapy and somatic regulation. This pillar generates <strong>B2B stability</strong> through corporate contracts and outpatient memberships.</p>
+
+                <p style="margin-top: 12px;"><strong>Core Services:</strong></p>
+                <ul>
+                    <li><strong>Thermal Contrast Therapy:</strong> Sauna, cold plunge, breathwork protocols to prevent "fade" of retreat benefits</li>
+                    <li><strong>Mindful Movement & Somatics:</strong> Trauma-sensitive yoga, somatic experiencing, nervous system regulation</li>
+                    <li><strong>Therapeutic Fasting & Metabolic Reset:</strong> Medically supervised fasting (16:8, 18:6, OMAD, 24-72hr water fasts)</li>
+                    <li><strong>Transformational Workshops:</strong> Group containers for trauma healing, nervous system regulation</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>B2B Corporate Wellness Retainers:</strong></p>
+                <ul>
+                    <li><strong>12-Month Contracts:</strong> $500–$3,000/month for block bookings</li>
+                    <li><strong>Revenue Stability:</strong> Smooths seasonal volatility; funds permanent scholarship runway</li>
+                    <li><strong>Target Clients:</strong> Fortune 500 HR departments, leadership teams ($700/night industry benchmark)</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>Outpatient Memberships:</strong></p>
+                <ul>
+                    <li><strong>Thermal Suite Access:</strong> $150–$250/month unlimited (aligned with luxury wellness benchmarks)</li>
+                    <li><strong>Stable Recurring Revenue:</strong> Maintains cash runway for multi-year scholarship commitments</li>
+                    <li><strong>Local Community Health:</strong> Fee-for-service medical referrals</li>
+                </ul>
+
+                <p style="margin-top: 12px; font-size: 12px; color: var(--hoef-stone);"><strong>Outcomes:</strong> Metabolic markers (ketones, glucose), HRV, inflammatory profiles, lifestyle integration tracking.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> B2B contracts provide predictable cash flow that enables multi-year scholarship commitments. Corporate wellness market growing 47% post-COVID. 12-month retainers eliminate seasonal volatility common in retreat models. Recurring revenue reduces occupancy risk and improves DSCR predictability. Integration with School of Living creates referral pipeline—participants graduate to residential programs.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Quote -->
+    <div class="slide-quote">
+        <div class="slide-quote-text">"Health and well-being is everyone's birthright. Freedom from within naturally extends outward towards others and the world."</div>
+        <div class="slide-quote-author">— Foundation Creed</div>
+    </div>
+
+    <button class="presenter-toggle" onclick="toggleNotes()">Show Notes</button>
+    
+    <button class="continue-btn" onclick="nextSlide()">
+        Continue: The BC Flagship <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+<script>
+    // Entity Card Expansion - Solo Focus Mode
+    function toggleEntity(element) {
+        const overlay = document.getElementById('overlay');
+        const cards = document.querySelectorAll('.entity-card');
+        
+        // If already expanded, collapse it
+        if (element.classList.contains('expanded')) {
+            element.classList.remove('expanded');
+            overlay.classList.remove('active');
+            return;
+        }
+
+        // Collapse all cards
+        cards.forEach(card => card.classList.remove('expanded'));
+        
+        // Show overlay
+        overlay.classList.add('active');
+
+        // Expand the clicked card
+        element.classList.add('expanded');
+    }
+
+    function collapseAll() {
+        const overlay = document.getElementById('overlay');
+        document.querySelectorAll('.entity-card.expanded').forEach(card => {
+            card.classList.remove('expanded');
+        });
+        overlay.classList.remove('active');
+    }
+
+    // Presenter Notes Toggle
+    function toggleNotes() {
+        document.body.classList.toggle('show-notes');
+        
+        // Update button text
+        const btn = document.querySelector('.presenter-toggle');
+        if (btn) {
+            const isShowing = document.body.classList.contains('show-notes');
+            btn.textContent = isShowing ? 'Hide Notes' : 'Show Notes';
+        }
+    }
+
+    // Escape key to collapse all
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            collapseAll();
+        }
+    });
+
+    // Presentation Navigation
+    const presentationSequence = [
+        { name: 'Ecosystem', type: 'page', url: 'ecosystem-dashboard.html' },
+        { name: 'Flagship', type: 'page', url: 'flagship-dashboard.html' },
+        { name: 'Crown-Down', type: 'page', url: 'crowndown-presentation.html' },
+        { name: 'Board Oversight', type: 'page', url: 'board-oversight.html' },
+        { name: 'NGO Partnerships', type: 'page', url: 'ngo-partnerships.html' },
+        { name: 'Closing', type: 'section', id: 'step-8' }
+    ];
+
+    function nextSlide() {
+        const currentIdx = parseInt(sessionStorage.getItem('currentSlide') || '0');
+        const nextIdx = currentIdx + 1;
+        
+        if (nextIdx < presentationSequence.length) {
+            sessionStorage.setItem('currentSlide', nextIdx.toString());
+            const next = presentationSequence[nextIdx];
+            
+            if (next.type === 'page') {
+                window.location.href = next.url;
+            } else if (next.type === 'section') {
+                window.location.href = 'index.html#' + next.id;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

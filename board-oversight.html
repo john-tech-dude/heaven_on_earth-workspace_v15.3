@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Oversight & Financial Gates | Heaven on Earth Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========================================
+           PROSPECTUS PREMIUM DESIGN SYSTEM
+           ======================================== */
+        :root {
+            --hoef-bg: #FDFDFB;
+            --hoef-cream: #FAF8F3;
+            --hoef-dark: #1A1A1A;
+            --hoef-navy: #0F172A;
+            --hoef-gold: #BFA15F;
+            --hoef-gold-subtle: rgba(191, 161, 95, 0.12);
+            --hoef-stone: #5C5C5C;
+            --hoef-slate: #475569;
+            --hoef-ink: #333333;
+            --hoef-border: #E8E8E4;
+            --hoef-border-light: #E2E8F0;
+            --hoef-panel: #FFFFFF;
+            --hoef-highlight: #F7F7F5;
+            --hoef-accent: #F1F5F9;
+            --hoef-success: #4A7C59;
+            --hoef-warning: #B8860B;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* ========================================
+           SLIDE CONTAINER - Premium Card
+           ======================================== */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background: var(--hoef-bg);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 35px 60px 30px;
+            box-shadow: 
+                0 25px 80px rgba(0,0,0,0.12),
+                0 10px 30px rgba(191,161,95,0.08);
+            border-radius: 4px;
+        }
+
+        /* ========================================
+           NAVIGATION & CONTROLS
+           ======================================== */
+        .nav-controls {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .exit-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 14px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 2px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .exit-btn:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            background: rgba(191, 161, 95, 0.05);
+        }
+
+        /* ========================================
+           QUOTE STYLING - Prospectus Style
+           ======================================== */
+        .slide-quote {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            padding: 16px 24px;
+            background: var(--hoef-highlight);
+            border-left: 3px solid var(--hoef-gold);
+            border-radius: 0 4px 4px 0;
+            z-index: 100;
+        }
+
+        .slide-quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--hoef-dark);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .slide-quote-author {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--hoef-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hoef-stone);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--hoef-panel);
+        }
+
+        .btn-icon:hover {
+            color: var(--hoef-gold);
+            border-color: var(--hoef-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(191,161,95,0.15);
+        }
+
+        .nav-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--hoef-gold);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-left: 8px;
+            border-left: 2px solid var(--hoef-gold);
+        }
+
+        .presenter-toggle {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: var(--hoef-navy);
+            color: var(--hoef-gold);
+            border: 1px solid var(--hoef-gold);
+            padding: 10px 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .presenter-toggle:hover {
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+        }
+
+        .continue-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--hoef-gold);
+            color: var(--hoef-navy);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .continue-btn:hover {
+            background: var(--hoef-dark);
+            color: var(--hoef-gold);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191,161,95,0.25);
+        }
+
+        /* ========================================
+           TYPOGRAPHY - Prospectus Premium
+           ======================================== */
+        .mono { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 10px; 
+            color: var(--hoef-gold); 
+            letter-spacing: 2.5px; 
+            text-transform: uppercase; 
+            font-weight: 600;
+        }
+        
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 30px; 
+            font-weight: 700;
+            margin: 0; 
+            color: var(--hoef-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 20px; 
+            font-weight: 600;
+            margin-bottom: 10px; 
+            color: var(--hoef-dark);
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--hoef-dark);
+        }
+        
+        p, li { 
+            font-family: 'Open Sans', sans-serif; 
+            font-size: 12px; 
+            color: var(--hoef-slate); 
+            line-height: 1.55;
+        }
+        
+        header { 
+            text-align: center; 
+            margin-bottom: 18px; 
+            padding-bottom: 10px;
+        }
+
+        header .mono {
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .intro-text {
+            max-width: 700px; 
+            margin: 6px auto 0;
+            font-style: italic;
+            color: var(--hoef-stone);
+            font-size: 13px;
+        }
+
+        /* ========================================
+           OVERSIGHT GRID LAYOUT - 2x2
+           ======================================== */
+        .oversight-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 18px;
+            padding: 8px 40px 60px;
+            position: relative;
+        }
+
+        /* ========================================
+           OVERSIGHT CARDS
+           ======================================== */
+        .oversight-card {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(250,250,248,0.95) 100%),
+                var(--hoef-panel);
+            background-blend-mode: overlay;
+            border: 1px solid var(--hoef-border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .oversight-card:hover {
+            border-color: var(--hoef-gold);
+            box-shadow: 0 12px 35px rgba(191,161,95,0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Subtle grain texture overlay */
+        .oversight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            border-radius: 6px;
+            z-index: 1;
+        }
+
+        .oversight-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Border Accents */
+        .cfo-box { border-top: 4px solid #2E5C8A; }
+        .metrics-box { border-top: 4px solid #4A7C59; }
+        .reserve-box { border-top: 4px solid #8B5A2B; }
+        .gates-box { border-top: 4px solid #C9A227; }
+
+        .card-header {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .entity-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .cfo-box .entity-icon { color: #2E5C8A; }
+        .metrics-box .entity-icon { color: #4A7C59; }
+        .reserve-box .entity-icon { color: #8B5A2B; }
+        .gates-box .entity-icon { color: #C9A227; }
+
+        .card-header h3 { 
+            font-size: 16px; 
+            margin: 4px 0 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header .mono {
+            font-size: 9px;
+            margin-bottom: 3px;
+        }
+
+        .card-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--hoef-stone);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: var(--hoef-highlight);
+            padding: 0 18px;
+            text-align: left;
+            border-top: 1px solid transparent;
+            flex: 1;
+        }
+
+        .card-body ul {
+            padding-left: 16px;
+            margin: 8px 0;
+        }
+
+        .card-body li {
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .card-body li::marker {
+            color: var(--hoef-gold);
+        }
+
+        .card-body strong {
+            color: var(--hoef-dark);
+        }
+
+        /* EXPANSION STATE */
+        .oversight-card.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 680px;
+            max-height: 80vh;
+            z-index: 1000;
+            border-color: var(--hoef-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .oversight-card.expanded .card-body {
+            max-height: 60vh;
+            opacity: 1;
+            padding: 18px;
+            overflow-y: auto;
+            border-top-color: var(--hoef-border);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ========================================
+           KPI ROWS
+           ======================================== */
+        .kpi-row {
+            display: flex;
+            gap: 16px;
+            margin: 12px 0;
+            padding: 12px;
+            background: var(--hoef-bg);
+            border-radius: 4px;
+            border: 1px solid var(--hoef-border);
+        }
+
+        .kpi-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .kpi-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--hoef-dark);
+            line-height: 1;
+        }
+
+        .kpi-lab {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            color: var(--hoef-stone);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           MATRIX TABLE
+           ======================================== */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin: 10px 0;
+        }
+
+        .matrix-table th {
+            background: var(--hoef-dark);
+            color: var(--hoef-gold);
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 500;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .matrix-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--hoef-border);
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background: var(--hoef-highlight);
+        }
+
+        /* ========================================
+           PRESENTER NOTES
+           ======================================== */
+        .presenter-note {
+            margin-top: 14px;
+            padding: 12px;
+            background: var(--hoef-panel);
+            border-left: 3px solid var(--hoef-gold);
+            display: none;
+            font-style: italic;
+            font-size: 11px;
+            color: var(--hoef-slate);
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .presenter-note strong {
+            color: var(--hoef-dark);
+            font-style: normal;
+        }
+        
+        .show-notes .presenter-note { display: block; }
+
+        /* ========================================
+           PRINT STYLES
+           ======================================== */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            
+            .slide-container {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-after: always;
+            }
+            
+            .presenter-note {
+                display: block !important;
+                border: 1px solid var(--hoef-border) !important;
+                background: #fafafa !important;
+            }
+            
+            .presenter-toggle,
+            .continue-btn,
+            .nav-controls {
+                display: none !important;
+            }
+            
+            .oversight-card {
+                break-inside: avoid;
+                border: 1px solid #ddd !important;
+            }
+            
+            .card-body {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+            
+            .oversight-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE ADJUSTMENTS
+           ======================================== */
+        @media (max-width: 900px) {
+            .slide-container {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                padding: 30px;
+            }
+            
+            .oversight-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                padding: 10px 20px 80px;
+            }
+            
+            .oversight-card.expanded {
+                width: 90%;
+                max-width: 500px;
+            }
+            
+            .continue-btn {
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="collapseAll()"></div>
+
+<!-- SLIDE: Board Oversight & Financial Gates -->
+<div class="slide-container" id="oversight-slide">
+    <div class="nav-controls">
+        <div class="nav-left">
+            <a href="index.html" class="btn-icon" title="Close"><i class="fa-solid fa-xmark"></i></a>
+            <div class="nav-label">Part IV: Leadership & Oversight</div>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="exit-btn" onclick="sessionStorage.clear();">Exit</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="mono">Governance Framework</div>
+        <h1>Board Oversight & Financial Gates</h1>
+        <p class="intro-text">Institutional-grade controls with CFO condition precedent, IRIS+ impact metrics, debt service reserves, and staged capital deployment gates.</p>
+    </header>
+
+    <div class="oversight-grid">
+        
+        <!-- 01: CFO OVERSIGHT -->
+        <div class="oversight-card cfo-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-user-tie entity-icon"></i>
+                <div class="mono">01 — Disbursement Gate</div>
+                <h3>CFO OVERSIGHT</h3>
+                <div class="card-subtitle">Condition Precedent</div>
+            </div>
+            <div class="card-body">
+                <p><strong>Capital Release Condition:</strong> No capital releases until CFO is appointed and board-confirmed. This ensures qualified financial oversight from day one.</p>
+
+                <div class="kpi-row">
+                    <div class="kpi-item">
+                        <div class="kpi-val">15+</div>
+                        <div class="kpi-lab">Years Exp. Req.</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-val">1.25x</div>
+                        <div class="kpi-lab">Min. DSCR</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-val">6Mo.</div>
+                        <div class="kpi-lab">Op. Reserve</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 10px;"><strong>CFO Authority:</strong></p>
+                <ul>
+                    <li><strong>Joint Signing:</strong> CFO maintains joint signing authority on reserve accounts with lender representatives</li>
+                    <li><strong>Monthly Reporting:</strong> Standardized financial reports to Board and lenders within 15 days of month-end</li>
+                    <li><strong>Covenant Monitoring:</strong> Real-time DSCR tracking with automated alerts at 1.3x threshold</li>
+                </ul>
+
+                <p style="margin-top: 10px;"><strong>Succession Protocol (3-Stage):</strong></p>
+                <ul>
+                    <li><strong>Stage 1 (Years 1-3):</strong> Founder-led with CFO oversight and board veto authority</li>
+                    <li><strong>Stage 2 (Years 4-7):</strong> CEO transition to external hire; founders remain on board</li>
+                    <li><strong>Stage 3 (Year 8+):</strong> Founders move to "Cultural Guardian" ceremonial roles; zero operational authority</li>
+                </ul>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> The CFO requirement is a standard institutional safeguard. Joint signing authority means the CFO AND a lender representative must both approve reserve account withdrawals. This prevents founders from accessing capital without oversight. The 3-stage succession plan eliminates "founder risk" that collapses personality-dependent organizations.
+                </div>
+            </div>
+        </div>
+
+        <!-- 02: IRIS+ METRICS -->
+        <div class="oversight-card metrics-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-chart-bar entity-icon"></i>
+                <div class="mono">02 — Impact Rigor</div>
+                <h3>IRIS+ METRICS</h3>
+                <div class="card-subtitle">Audited Quarterly Reporting</div>
+            </div>
+            <div class="card-body">
+                <p><strong>GIIN Standards Compliance:</strong> Audited quarterly reporting utilizing GIIN's hard data standards for institutional impact transparency and comparability.</p>
+
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Standard</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Jobs Supported</strong></td>
+                            <td>IRIS PI4060</td>
+                            <td>45+ FTE Year 3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client Individuals</strong></td>
+                            <td>IRIS PI1713</td>
+                            <td>1,200+/year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Satisfaction Score</strong></td>
+                            <td>NPS Methodology</td>
+                            <td>70+ Net Promoter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Community Investment</strong></td>
+                            <td>Total Spend</td>
+                            <td>$400K+ annually</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sliding Scale Access</strong></td>
+                            <td>% at reduced rate</td>
+                            <td>35% of participants</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Women in Leadership</strong></td>
+                            <td>% of mgmt roles</td>
+                            <td>50%+ by Year 3</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 10px;"><strong>Reporting Cadence:</strong> Quarterly IRIS+ reports published within 45 days of quarter-end. Annual third-party audit validates metrics. All data available to lenders via secure dashboard.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> IRIS+ is the Global Impact Investing Network's standardized metrics—this is what institutional impact investors expect. The 70+ NPS target compares to 30-40 for typical hospitality. 35% sliding scale access demonstrates mission alignment, not just profit extraction.
+                </div>
+            </div>
+        </div>
+
+        <!-- 03: DEBT SERVICE RESERVE -->
+        <div class="oversight-card reserve-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-vault entity-icon"></i>
+                <div class="mono">03 — Capital Protection</div>
+                <h3>RESERVE ACCOUNT</h3>
+                <div class="card-subtitle">Lender-Controlled Escrow</div>
+            </div>
+            <div class="card-body">
+                <p><strong>Reserve Structure:</strong> $1.2M (6 months debt service) held in lender-controlled escrow from day one. This ensures debt service continuity even during operational ramp-up.</p>
+
+                <div class="kpi-row">
+                    <div class="kpi-item">
+                        <div class="kpi-val">$1.2M</div>
+                        <div class="kpi-lab">In Escrow</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-val">6Mo</div>
+                        <div class="kpi-lab">Coverage</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-val">Dual</div>
+                        <div class="kpi-lab">Signatory</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 10px;"><strong>Escrow Governance:</strong></p>
+                <ul>
+                    <li><strong>Release Triggers:</strong> Debt service payments auto-release; operational draws require CFO + Board Chair approval</li>
+                    <li><strong>Replenishment:</strong> Reserve must be maintained at 6-month coverage; quarterly true-up from operating cash flow</li>
+                    <li><strong>Lender Visibility:</strong> Real-time account access via banking portal; monthly reconciliation reports</li>
+                    <li><strong>Failure Protocol:</strong> If reserve drops below 3 months, automatic covenant review triggered</li>
+                </ul>
+
+                <p style="margin-top: 10px;"><strong>Annual Escrow Audit:</strong> Independent verification that reserve balance matches recorded liabilities; lender receives certified audit letter.</p>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> The $1.2M reserve is lender protection—it's not for operations, it's for debt service if revenue falls short. Dual signatory means both Foundation CFO AND lender representative must approve any release. This is standard practice in institutional debt; unusual in nonprofit lending.
+                </div>
+            </div>
+        </div>
+
+        <!-- 04: STAGED GATES -->
+        <div class="oversight-card gates-box" onclick="toggleEntity(this)">
+            <div class="card-header">
+                <i class="fa-solid fa-lock entity-icon"></i>
+                <div class="mono">04 — Capital Deployment</div>
+                <h3>STAGED GATES</h3>
+                <div class="card-subtitle">Performance-Locked Tranches</div>
+            </div>
+            <div class="card-body">
+                <p><strong>Tranche Release Model:</strong> Capital deployed in stages tied to verified milestones. Each gate requires demonstrated performance before next tranche releases.</p>
+
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Gate</th>
+                            <th>Amount</th>
+                            <th>Trigger</th>
+                            <th>Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gate 1</strong></td>
+                            <td>$1.5M</td>
+                            <td>Agreement signed</td>
+                            <td>Month 1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gate 2</strong></td>
+                            <td>$3.5M</td>
+                            <td>6-mo DSCR >1.2x</td>
+                            <td>Month 6+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gate 3</strong></td>
+                            <td>$2-4M</td>
+                            <td>12-mo DSCR >1.4x</td>
+                            <td>Year 2</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 10px;"><strong>Gate Review Process:</strong></p>
+                <ul>
+                    <li><strong>Quarterly Board Review:</strong> Financial performance assessed against gate criteria</li>
+                    <li><strong>Lender Notification:</strong> 30-day advance notice of gate trigger or failure</li>
+                    <li><strong>Gate Failure Protocol:</strong> If metrics not met, capital held until performance improves; no penalty, no default</li>
+                    <li><strong>Acceleration Option:</strong> Lender may elect to accelerate next tranche early if performance exceeds targets</li>
+                </ul>
+
+                <div class="presenter-note">
+                    <strong>Presenter Note:</strong> This is NOT "draw down as needed." Capital is LOCKED until gates open. Gate 2 requires 1.2x DSCR with 6 months of data—real performance, not projections. This protects lender capital by ensuring proof-of-concept before major deployment. If BC Flagship underperforms, remaining capital never leaves escrow.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Quote -->
+    <div class="slide-quote">
+        <div class="slide-quote-text">"The three most important words in all of investing are: Margin of Safety."</div>
+        <div class="slide-quote-author">— Warren Buffett</div>
+    </div>
+
+    <button class="presenter-toggle" onclick="toggleNotes()">Show Notes</button>
+    
+    <button class="continue-btn" onclick="nextSlide()">
+        Continue: NGO & Partnerships <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+<script>
+    // Entity Card Expansion - Solo Focus Mode
+    function toggleEntity(element) {
+        const overlay = document.getElementById('overlay');
+        const cards = document.querySelectorAll('.oversight-card');
+        
+        // If already expanded, collapse it
+        if (element.classList.contains('expanded')) {
+            element.classList.remove('expanded');
+            overlay.classList.remove('active');
+            return;
+        }
+
+        // Collapse all cards
+        cards.forEach(card => card.classList.remove('expanded'));
+        
+        // Show overlay
+        overlay.classList.add('active');
+
+        // Expand the clicked card
+        element.classList.add('expanded');
+    }
+
+    function collapseAll() {
+        const overlay = document.getElementById('overlay');
+        document.querySelectorAll('.oversight-card.expanded').forEach(card => {
+            card.classList.remove('expanded');
+        });
+        overlay.classList.remove('active');
+    }
+
+    // Presenter Notes Toggle
+    function toggleNotes() {
+        document.body.classList.toggle('show-notes');
+        
+        // Update button text
+        const btn = document.querySelector('.presenter-toggle');
+        if (btn) {
+            const isShowing = document.body.classList.contains('show-notes');
+            btn.textContent = isShowing ? 'Hide Notes' : 'Show Notes';
+        }
+    }
+
+    // Escape key to collapse all
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            collapseAll();
+        }
+    });
+
+    // Presentation Navigation
+    const presentationSequence = [
+        { name: 'Ecosystem', type: 'page', url: 'ecosystem-dashboard.html' },
+        { name: 'Flagship', type: 'page', url: 'flagship-dashboard.html' },
+        { name: 'Crown-Down', type: 'page', url: 'crowndown-presentation.html' },
+        { name: 'Board Oversight', type: 'page', url: 'board-oversight.html' },
+        { name: 'NGO Partnerships', type: 'page', url: 'ngo-partnerships.html' },
+        { name: 'Closing', type: 'section', id: 'step-8' }
+    ];
+
+    function nextSlide() {
+        const currentIdx = parseInt(sessionStorage.getItem('currentSlide') || '0');
+        const nextIdx = currentIdx + 1;
+        
+        if (nextIdx < presentationSequence.length) {
+            sessionStorage.setItem('currentSlide', nextIdx.toString());
+            const next = presentationSequence[nextIdx];
+            
+            if (next.type === 'page') {
+                window.location.href = next.url;
+            } else if (next.type === 'section') {
+                window.location.href = 'index.html#' + next.id;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
