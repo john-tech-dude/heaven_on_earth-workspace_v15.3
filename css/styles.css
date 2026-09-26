@@ -2751,6 +2751,10 @@ button:focus-visible,
     color: var(--hoef-gold);
 }
 
+[data-theme="dark"] .pillar-icon svg {
+    stroke: var(--hoef-gold);
+}
+
 .pillar-icon {
     width: 48px;
     height: 48px;
