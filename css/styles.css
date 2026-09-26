@@ -3128,6 +3128,184 @@ button:focus-visible,
     border-radius: 8px;
 }
 
+/* --- Tooltip & Modal System --- */
+.term-definition {
+    position: relative;
+    display: inline;
+    cursor: help;
+    border-bottom: 1px dotted var(--hoef-gold);
+    transition: all 0.2s ease;
+}
+
+.term-definition:hover {
+    border-bottom-style: solid;
+    background: var(--hoef-gold-subtle);
+}
+
+/* Tooltip */
+.term-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hoef-dark);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    margin-bottom: 4px;
+    max-width: 250px;
+    white-space: normal;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.term-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: var(--hoef-dark);
+}
+
+.term-definition:hover .term-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal */
+.tooltip-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip-modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--hoef-panel);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--hoef-highlight);
+    border: 1px solid var(--hoef-border);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hoef-stone);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: var(--hoef-gold);
+    color: white;
+    border-color: var(--hoef-gold);
+}
+
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--hoef-dark);
+    margin: 0;
+    padding: 16px 48px 8px 24px;
+    border-bottom: 1px solid var(--hoef-border);
+}
+
+.modal-body {
+    padding: 20px 24px 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: var(--hoef-ink);
+    line-height: 1.7;
+}
+
+.modal-category {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--hoef-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    background: var(--hoef-highlight);
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+/* Responsive Modal */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+        padding: 12px 40px 8px 16px;
+    }
+    
+    .modal-body {
+        padding: 16px;
+        font-size: 14px;
+    }
+}
+
 .footer-org {
     font-family: 'Playfair Display', serif;
     font-size: 18px;

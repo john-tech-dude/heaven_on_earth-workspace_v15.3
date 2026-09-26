@@ -122,8 +122,8 @@
                     <p class="simple-text">Their key advantages:</p>
                     <ul class="simple-list">
                         <li><strong>Lower costs than competitors</strong> — They break even at 35% occupancy when most similar places need 60-70%</li>
-                        <li><strong>Vertical integration</strong> — They grow their own food, run their own programs, and don't outsource much</li>
-                        <li><strong>Work-study program</strong> — People can work in exchange for reduced rates, saving ~$200K annually in labor costs</li>
+                        <li><strong><span class="term-definition" data-term="vertical integration">Vertical integration</span></strong> — They grow their own food, run their own programs, and don't outsource much</li>
+                        <li><strong><span class="term-definition" data-term="work-study model">Work-study program</span></strong> — People can work in exchange for reduced rates, saving ~$200K annually in labor costs</li>
                         <li><strong>Non-profit structure</strong> — All profits go back into the mission, not to shareholders</li>
                     </ul>
                 </div>
@@ -132,10 +132,10 @@
                     <h3 class="simple-heading">The Investment Pitch</h3>
                     <p class="simple-text">They're offering:</p>
                     <ul class="simple-list">
-                        <li>4-6% return on investment (non-compounding)</li>
-                        <li>100% principal protection</li>
-                        <li>Asset-backed security</li>
-                        <li>Strong financial safeguards including a $1.2M reserve fund</li>
+                        <li>4-6% return on investment (<span class="term-definition" data-term="non-compounding return">non-compounding</span>)</li>
+                        <li>100% <span class="term-definition" data-term="principal protection">principal protection</span></li>
+                        <li><span class="term-definition" data-term="asset-backed security">Asset-backed security</span></li>
+                        <li>Strong financial safeguards including a $1.2M <span class="term-definition" data-term="debt service reserve">reserve fund</span></li>
                     </ul>
                 </div>
             </div>
@@ -307,8 +307,8 @@
                         </div>
                         <div class="metric-card">
                             <span class="metric-value">1.59×</span>
-                            <span class="metric-label">Base DSCR</span>
-                            <span class="metric-context">At 35% occupancy, 1.25× covenant floor</span>
+                            <span class="metric-label">Base <span class="term-definition" data-term="DSCR">DSCR</span></span>
+                            <span class="metric-context">At 35% occupancy, 1.25× <span class="term-definition" data-term="covenant floor">covenant floor</span></span>
                         </div>
                         <div class="metric-card">
                             <span class="metric-value">35%</span>
@@ -338,7 +338,7 @@
                     <ul class="highlights-list">
                         <li><strong>Structural Moat:</strong> 35% break-even occupancy vs. 60–70% industry standard</li>
                         <li><strong>Conservative Underwriting:</strong> Financial models assume only 35% Year 1 occupancy</li>
-                        <li><strong>Institutional Protections:</strong> 7-layer covenant architecture with lender-controlled reserves</li>
+                        <li><strong>Institutional Protections:</strong> 7-layer covenant architecture with lender-controlled <span class="term-definition" data-term="debt service reserve">reserves</span></li>
                         <li><strong>Mission Alignment:</strong> Zero founder extraction, mission-first surplus waterfall</li>
                         <li><strong>Proven Market:</strong> BC Sunshine Coast validated by 20+ years of local retreat operations</li>
                     </ul>
@@ -442,9 +442,9 @@
                 <div class="entity-structure">
                     <h4 class="sub-subsection-heading">Entity Structure</h4>
                     <ul class="entity-list">
-                        <li><strong>Delaware Non-Stock Corporation:</strong> Parent 501(c)(3) foundation holding charitable mission and IP assets.</li>
+                        <li><strong>Delaware Non-Stock Corporation:</strong> Parent <span class="term-definition" data-term="501(c)(3)">501(c)(3)</span> foundation holding charitable mission and IP assets.</li>
                         <li><strong>Wyoming Management Company LLC:</strong> Taxable operating subsidiary serving as primary obligor for debt instruments.</li>
-                        <li><strong>South Dakota Perpetual Purpose Trust:</strong> Ring-fenced vehicle holding real estate and IP beyond creditor reach.</li>
+                        <li><strong>South Dakota <span class="term-definition" data-term="perpetual purpose trust">Perpetual Purpose Trust</span>:</strong> Ring-fenced vehicle holding real estate and IP beyond creditor reach.</li>
                         <li><strong>International SPVs:</strong> Local subsidiaries for global expansion with tax-efficient cross-border structures.</li>
                     </ul>
                 </div>
@@ -564,6 +564,205 @@
     <script>
         window.PROSPECTUS_VERSION = '1.1';
         window.PROSPECTUS_DATE = 'September 2026';
+    </script>
+
+    <!-- Tooltip Modal System -->
+    <div id="tooltip-modal" class="tooltip-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close modal">×</button>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Tooltip Definitions Data -->
+    <script>
+        window.TERM_DEFINITIONS = {
+            'DSCR': {
+                short: 'Debt Service Coverage Ratio - measures ability to service debt',
+                full: 'Debt Service Coverage Ratio: A financial metric that measures a property\'s ability to cover its debt obligations. Calculated as Net Operating Income divided by total debt service. A DSCR of 1.59× means the property generates 1.59 times the income needed to cover debt payments, indicating strong financial health.',
+                category: 'Financial'
+            },
+            'senior impact debt': {
+                short: 'Debt with priority repayment and social impact focus',
+                full: 'Senior Impact Debt: A form of debt financing that combines traditional senior debt characteristics (priority repayment in case of default) with impact investing criteria. Lenders receive competitive returns while funding projects that generate measurable social or environmental benefits.',
+                category: 'Financial'
+            },
+            'non-compounding return': {
+                short: 'Interest paid without reinvestment or compounding',
+                full: 'Non-Compounding Return: Interest payments are made periodically (typically quarterly) and not reinvested to generate additional interest. This provides lenders with predictable cash flow and simplifies tax treatment compared to compounding returns.',
+                category: 'Financial'
+            },
+            'principal protection': {
+                short: 'Guarantee of full loan repayment at maturity',
+                full: 'Principal Protection: Structural and contractual safeguards that ensure lenders receive their full principal investment back at loan maturity. Includes asset backing, debt service reserves, and legal protections that minimize default risk.',
+                category: 'Financial'
+            },
+            'asset-backed security': {
+                short: 'Loan secured by physical assets or collateral',
+                full: 'Asset-Backed Security: A type of debt instrument that is secured by a pool of assets, in this case the wellness retreat property and infrastructure. Provides lenders with collateral that can be used to recover their investment if the borrower defaults.',
+                category: 'Financial'
+            },
+            'covenant floor': {
+                short: 'Minimum financial performance threshold',
+                full: 'Covenant Floor: A minimum financial performance threshold that the borrower must maintain. If the DSCR falls below this floor (1.25× in this case), it triggers protective covenants that may restrict operations or require corrective actions.',
+                category: 'Financial'
+            },
+            'debt service reserve': {
+                short: 'Escrow account covering debt payments',
+                full: 'Debt Service Reserve: A segregated escrow account funded with cash reserves specifically designated to cover debt service payments. Provides lenders with additional security by ensuring funds are available even if operating income temporarily declines.',
+                category: 'Financial'
+            },
+            '501(c)(3)': {
+                short: 'US tax-exempt non-profit designation',
+                full: '501(c)(3): Section of the US Internal Revenue Code that provides tax-exempt status to non-profit organizations. Organizations with this designation are exempt from federal income tax and can receive tax-deductible donations, but must comply with strict operational requirements.',
+                category: 'Legal'
+            },
+            'springing board veto': {
+                short: 'Board power activated on covenant breach',
+                full: 'Springing Board Veto: A governance mechanism where independent board members gain extraordinary veto powers only when specific conditions are met (such as covenant breaches). This provides institutional protection without day-to-day interference in operations.',
+                category: 'Governance'
+            },
+            'fiduciary duties': {
+                short: 'Legal obligation to act in beneficiaries\' best interests',
+                full: 'Fiduciary Duties: Legal obligations that require board members to act in the best interests of the organization and its beneficiaries. Includes duties of care (making informed decisions), loyalty (avoiding conflicts of interest), and obedience (following the organization\'s mission).',
+                category: 'Governance'
+            },
+            'perpetual purpose trust': {
+                short: 'Legal structure preserving mission indefinitely',
+                full: 'Perpetual Purpose Trust: A sophisticated legal structure that separates ownership from control, ensuring an organization\'s mission is preserved indefinitely. South Dakota PPTs offer strong asset protection and prevent mission drift even after founder involvement ends.',
+                category: 'Legal'
+            },
+            'negative pledge covenant': {
+                short: 'Promise not to pledge assets to other lenders',
+                full: 'Negative Pledge Covenant: A contractual agreement where the borrower promises not to pledge assets as collateral to other lenders. This protects existing lenders by ensuring the assets backing their loan remain unencumbered.',
+                category: 'Legal'
+            },
+            'ringfenced assets': {
+                short: 'Legally protected assets separated from operations',
+                full: 'Ringfenced Assets: Assets that are legally and structurally separated from operational risks. These assets cannot be seized by creditors of the operating company, providing protection for charitable mission assets and IP.',
+                category: 'Legal'
+            },
+            'vertical integration': {
+                short: 'Controlling multiple stages of production/service',
+                full: 'Vertical Integration: A business strategy where a company controls multiple stages of production or service delivery rather than outsourcing. Here, the foundation operates its own farm, food service, education programs, and healing services, capturing margins typically lost to third parties.',
+                category: 'Operational'
+            },
+            'work-study model': {
+                short: 'Participants work in exchange for reduced tuition',
+                full: 'Work-Study Model: A program where participants contribute labor in exchange for reduced program fees. This reduces operational costs while providing vocational training and making programs accessible to individuals who cannot afford full tuition.',
+                category: 'Operational'
+            },
+            'sliding scale access': {
+                short: 'Pricing based on ability to pay',
+                full: 'Sliding Scale Access: A pricing model where program fees are adjusted based on a participant\'s ability to pay. Ensures accessibility across income levels while maintaining financial sustainability through cross-subsidization and external funding.',
+                category: 'Operational'
+            },
+            'ESG commitments': {
+                short: 'Environmental, Social, and Governance standards',
+                full: 'ESG Commitments: A set of standards measuring a company\'s environmental impact, social responsibility, and governance practices. Investors increasingly use ESG criteria to evaluate sustainability and ethical performance of potential investments.',
+                category: 'Operational'
+            }
+        };
+
+        // Tooltip and Modal Functionality
+        function createTooltipElement(term, definition) {
+            const span = document.createElement('span');
+            span.className = 'term-definition';
+            span.textContent = term;
+            span.setAttribute('data-term', term.toLowerCase());
+            span.setAttribute('role', 'button');
+            span.setAttribute('tabindex', '0');
+            span.setAttribute('aria-label', `Click to view definition of ${term}`);
+            
+            const tooltip = document.createElement('span');
+            tooltip.className = 'term-tooltip';
+            tooltip.textContent = definition.short;
+            span.appendChild(tooltip);
+            
+            span.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(term);
+            });
+            span.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(term);
+                }
+            });
+            
+            return span;
+        }
+
+        function openModal(term) {
+            const definition = window.TERM_DEFINITIONS[term.toLowerCase()];
+            if (!definition) return;
+            
+            const modal = document.getElementById('tooltip-modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            title.textContent = term;
+            body.innerHTML = `
+                <span class="modal-category">${definition.category}</span>
+                <p>${definition.full}</p>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus trap for accessibility
+            const closeBtn = modal.querySelector('.modal-close');
+            closeBtn.focus();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('tooltip-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize tooltips for manually marked terms
+        document.addEventListener('DOMContentLoaded', function() {
+            const manualTerms = document.querySelectorAll('.term-definition');
+            
+            manualTerms.forEach(termElement => {
+                const termKey = termElement.getAttribute('data-term');
+                const definition = window.TERM_DEFINITIONS[termKey];
+                
+                if (definition) {
+                    // Add tooltip if not already present
+                    if (!termElement.querySelector('.term-tooltip')) {
+                        const tooltip = document.createElement('span');
+                        tooltip.className = 'term-tooltip';
+                        tooltip.textContent = definition.short;
+                        termElement.appendChild(tooltip);
+                    }
+                    
+                    // Add click handler
+                    termElement.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openModal(termElement.textContent);
+                    });
+                    
+                    // Add keyboard accessibility
+                    termElement.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openModal(termElement.textContent);
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
     <!-- EXECUTIVE SUMMARY — Institutional Investment Overview -->
@@ -708,13 +907,13 @@
             <div class="protections-bar">
                 <span class="protections-label">Lender Protections</span>
                 <div class="protections-items">
-                    <span class="protection-item">$1.2M Debt Service Reserve</span>
+                    <span class="protection-item">$1.2M <span class="term-definition" data-term="debt service reserve">Debt Service Reserve</span></span>
                     <span class="protection-dot">•</span>
-                    <span class="protection-item">Negative Pledge Covenant</span>
+                    <span class="protection-item"><span class="term-definition" data-term="negative pledge covenant">Negative Pledge Covenant</span></span>
                     <span class="protection-dot">•</span>
-                    <span class="protection-item">Springing Board Veto</span>
+                    <span class="protection-item"><span class="term-definition" data-term="springing board veto">Springing Board Veto</span></span>
                     <span class="protection-dot">•</span>
-                    <span class="protection-item">Ringfenced Charitable Assets</span>
+                    <span class="protection-item"><span class="term-definition" data-term="ringfenced assets">Ringfenced Charitable Assets</span></span>
                 </div>
             </div>
 
