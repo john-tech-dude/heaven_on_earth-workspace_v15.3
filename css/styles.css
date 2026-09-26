@@ -70,6 +70,58 @@
     box-shadow: 0 4px 12px var(--hoef-gold-mid);
 }
 
+/* Additional Dark Mode Elements */
+[data-theme="dark"] .panel h3,
+[data-theme="dark"] .panel h2 {
+    color: var(--hoef-dark);
+}
+
+[data-theme="dark"] .panel .subtitle {
+    color: var(--hoef-text);
+    border-left-color: var(--hoef-gold);
+}
+
+[data-theme="dark"] .panel p {
+    color: var(--hoef-text);
+}
+
+[data-theme="dark"] .panel strong {
+    color: var(--hoef-dark);
+}
+
+[data-theme="dark"] .entity-num {
+    color: var(--hoef-gold);
+    border-color: var(--hoef-gold);
+}
+
+[data-theme="dark"] .entity-name {
+    color: var(--hoef-text);
+}
+
+[data-theme="dark"] .entity-subtitle {
+    color: var(--hoef-gold);
+}
+
+[data-theme="dark"] .faq-chev {
+    color: var(--hoef-gold);
+}
+
+[data-theme="dark"] .mission-statement {
+    color: var(--hoef-dark);
+}
+
+[data-theme="dark"] .btn-action {
+    background: transparent;
+    border-color: var(--hoef-border);
+    color: var(--hoef-text);
+}
+
+[data-theme="dark"] .btn-action:hover {
+    background: var(--hoef-gold);
+    border-color: var(--hoef-gold);
+    color: #ffffff;
+}
+
 /* Dark Mode Additional Elements */
 [data-theme="dark"] .section-tag,
 [data-theme="dark"] .panel-tag {
