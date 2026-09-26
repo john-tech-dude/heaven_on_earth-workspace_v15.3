@@ -3231,6 +3231,9 @@ body:not(.prospectus-active) #mobileModeToggle {
 }
 
 /* Floating theme toggle is always visible */
+body:not(.prospectus-active) .floating-theme-toggle {
+    display: none !important;
+}
 .floating-theme-toggle {
     display: flex !important;
 }
@@ -3446,6 +3449,15 @@ body:not(.prospectus-active) #mobileModeToggle {
     text-align: center;
     transition: opacity 0.4s ease;
     background: #FFFFFF !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Force light theme on title page regardless of data-theme */
+#title-page,
+#title-page * {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
 }
 .title-page-content { max-width: 800px; padding: 20px; }
 .title-page-logo { margin-bottom: 30px; max-width: 280px; height: auto; }
@@ -3453,13 +3465,13 @@ body:not(.prospectus-active) #mobileModeToggle {
     font-size: 3.5rem;
     letter-spacing: -1px;
     margin-bottom: 10px;
-    color: #0F172A;
+    color: #0F172A !important;
     font-family: 'Playfair Display', serif;
 }
 .title-page-subtitle {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
-    color: #3B82F6;
+    color: #3B82F6 !important;
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: 40px;
@@ -3467,14 +3479,14 @@ body:not(.prospectus-active) #mobileModeToggle {
 
 /* Title Page Button - Always Light Theme */
 #title-page .btn-title {
-    background: transparent;
-    border-color: #E2E8F0;
-    color: #0F172A;
+    background: transparent !important;
+    border-color: #E2E8F0 !important;
+    color: #0F172A !important;
 }
 #title-page .btn-title:hover {
-    background: rgba(59, 130, 246, 0.10);
-    border-color: #3B82F6;
-    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.10) !important;
+    border-color: #3B82F6 !important;
+    color: #3B82F6 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
