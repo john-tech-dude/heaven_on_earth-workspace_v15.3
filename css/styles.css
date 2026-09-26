@@ -2900,6 +2900,120 @@ body:not(.prospectus-active) #mobileModeToggle {
 
 .is-hidden { display: none !important; opacity: 0; visibility: hidden; }
 
+/* Closing Thesis Section */
+.closing-thesis-container {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--hoef-bg);
+    border-top: 1px solid var(--hoef-border);
+    margin-top: 60px;
+}
+
+.closing-thesis-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.closing-thesis-logo {
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.closing-thesis-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--hoef-dark);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.closing-thesis-subtext {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    color: var(--hoef-stone);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Presenter Toggle Button */
+.presenter-toggle-btn {
+    display: block;
+    margin: 40px auto 20px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--hoef-border);
+    color: var(--hoef-stone);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.presenter-toggle-btn:hover {
+    background: var(--hoef-gold);
+    border-color: var(--hoef-gold);
+    color: var(--hoef-dark);
+}
+
+/* Mobile Summary Mode Toggle */
+#mobileModeToggle {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--hoef-border);
+    color: var(--hoef-stone);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mobileModeToggle:hover {
+    background: var(--hoef-gold);
+    border-color: var(--hoef-gold);
+    color: var(--hoef-dark);
+}
+
+/* Footer Actions */
+.footer-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.footer-pitch-toggle,
+.pdf-export-btn,
+.back-to-top {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--hoef-border);
+    color: var(--hoef-stone);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer-pitch-toggle:hover,
+.pdf-export-btn:hover,
+.back-to-top:hover {
+    background: var(--hoef-gold);
+    border-color: var(--hoef-gold);
+    color: var(--hoef-dark);
+}
+
 /* Title Page Base Styling */
 #title-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; transition: opacity 0.4s ease; background: var(--hoef-bg); }
 .title-page-content { max-width: 800px; padding: 20px; }
