@@ -685,7 +685,14 @@ header { text-align: center; padding: 80px 20px 60px; background: var(--hoef-bg)
     margin: 30px auto 40px auto;
     max-width: 600px;
     line-height: 1.6;
+    transition: color 0.3s ease;
 }
+
+/* Dark Mode Philosophical Anchor */
+[data-theme="dark"] .philosophical-anchor {
+    color: var(--hoef-stone);
+}
+
 .philosophical-anchor .quote-attribution {
     display: block;
     font-family: 'Open Sans', sans-serif;
@@ -696,6 +703,11 @@ header { text-align: center; padding: 80px 20px 60px; background: var(--hoef-bg)
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-top: 12px;
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .philosophical-anchor .quote-attribution {
+    color: var(--hoef-gold);
 }
 
 /* Funding Callout - Impact Loan Request */
@@ -2715,12 +2727,28 @@ button:focus-visible,
 .strategic-pillars {
     display: flex;
     justify-content: center;
-    gap: 48px;
+    gap: 32px;
+    flex-wrap: wrap;
 }
 
 .pillar-item {
     text-align: center;
     max-width: 200px;
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Dark Mode Strategic Pillars */
+[data-theme="dark"] .pillar-name {
+    color: var(--hoef-dark);
+}
+
+[data-theme="dark"] .pillar-desc {
+    color: var(--hoef-text);
+}
+
+[data-theme="dark"] .pillar-icon {
+    color: var(--hoef-gold);
 }
 
 .pillar-icon {
@@ -3069,6 +3097,11 @@ button:focus-visible,
     .strategic-pillars {
         flex-direction: column;
         align-items: center;
+        gap: 32px;
+    }
+
+    .pillar-item {
+        max-width: 280px;
     }
     
     .impact-metrics {
