@@ -31,3 +31,4 @@ build/
 
 # Windsurf-specific
 .windsurf/
+.vercel

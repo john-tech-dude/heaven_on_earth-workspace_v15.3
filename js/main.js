@@ -292,7 +292,7 @@ function exportToPDF() {
 
     // Set document title for PDF filename
     const originalTitle = document.title;
-    document.title = 'Heaven-on-Earth-Foundation-Prospectus-April-2026';
+    document.title = 'Heaven-on-Earth-Foundation-Prospectus-September-2025';
 
     // Small delay to ensure content is revealed
     setTimeout(() => {
