@@ -2932,6 +2932,11 @@
     
     <button class="presenter-toggle-btn" onclick="togglePresenterMode()">Show Notes</button>
 
+    <!-- Theme Toggle -->
+    <button id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle Dark Mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
     <!-- Mobile Summary Mode Toggle -->
     <button id="mobileModeToggle" onclick="toggleSummaryMode()" aria-label="Toggle between timeline and summary view">
         Summary Mode
@@ -2939,6 +2944,7 @@
 
     <div class="footer-actions">
         <button class="footer-pitch-toggle" onclick="togglePitchDeck()">Show Pitch</button>
+        <button class="presentation-btn" onclick="window.location.href='user_presentation_complete.html'">Launch Presentation</button>
         <button class="pdf-export-btn" onclick="exportToPDF()" title="Export as PDF for email distribution">Export PDF</button>
         <button class="back-to-top" onclick="smoothScrollTo('step-0', 100)" title="Back to Top">↑ Top</button>
     </div>

@@ -700,7 +700,31 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('presenter-notes-hidden');
     document.body.classList.add('pitch-deck-hidden');
     initScrollProgress();
+    initTheme();
 });
+
+// Theme Toggle Function
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+function updateThemeIcon(theme) {
+    const themeIcon = document.querySelector('.theme-icon');
+    if (themeIcon) {
+        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+}
 
 // Crown-Down Architecture Modal Functions
 function openCrownModal() {
