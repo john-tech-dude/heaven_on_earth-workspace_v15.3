@@ -40,34 +40,45 @@
     filter: brightness(1.1) contrast(1.05);
 }
 
-/* Title Page Theme Toggle Button */
-#titlePageThemeToggle {
-    margin-top: 30px;
-    padding: 10px 20px;
-    background: transparent;
-    border: 1px solid var(--hoef-border);
-    color: var(--hoef-stone);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+/* Floating Theme Toggle Button - Bottom Right */
+.floating-theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--hoef-panel);
+    border: 2px solid var(--hoef-border);
+    color: var(--hoef-text);
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-left: auto;
-    margin-right: auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-#titlePageThemeToggle:hover {
-    background: var(--hoef-gold-subtle);
+.floating-theme-toggle:hover {
+    background: var(--hoef-gold);
     border-color: var(--hoef-gold);
-    color: var(--hoef-gold);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--hoef-gold-mid);
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .floating-theme-toggle:hover {
+    background: var(--hoef-gold);
+    border-color: var(--hoef-gold);
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(96, 165, 250, 0.3);
+}
+
+.theme-icon {
+    font-size: 1.2rem;
 }
 
 /* Additional Dark Mode Elements */
@@ -3035,8 +3046,13 @@ body:not(.prospectus-active) .footer-bar,
 body:not(.prospectus-active) #prospectus-footnotes,
 body:not(.prospectus-active) .presenter-toggle-btn,
 body:not(.prospectus-active) .scroll-progress-container,
-body:not(.prospectus-active) #mobileModeToggle { 
-    display: none !important; 
+body:not(.prospectus-active) #mobileModeToggle {
+    display: none !important;
+}
+
+/* Floating theme toggle is always visible */
+.floating-theme-toggle {
+    display: flex !important;
 }
 
 .is-hidden { display: none !important; opacity: 0; visibility: hidden; }
@@ -3129,38 +3145,7 @@ body:not(.prospectus-active) #mobileModeToggle {
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
-/* Theme Toggle Button */
-#themeToggle {
-    display: block;
-    margin: 20px auto;
-    padding: 12px 24px;
-    background: transparent;
-    border: 1px solid var(--hoef-border);
-    color: var(--hoef-stone);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
 
-#themeToggle:hover {
-    background: var(--hoef-gold);
-    border-color: var(--hoef-gold);
-    color: var(--hoef-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-}
-
-.theme-icon {
-    font-size: 1.2rem;
-}
 
 /* Professional Footer Actions */
 .footer-actions {
@@ -3272,15 +3257,15 @@ body:not(.prospectus-active) #mobileModeToggle {
     margin-right: 8px;
 }
 
-/* Title Page Base Styling */
+/* Title Page Base Styling - Always White */
 #title-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    transition: opacity 0.4s ease, background-color 0.3s ease;
-    background: var(--hoef-bg);
+    transition: opacity 0.4s ease;
+    background: #FFFFFF !important;
 }
 .title-page-content { max-width: 800px; padding: 20px; }
 .title-page-logo { margin-bottom: 30px; max-width: 280px; height: auto; }
@@ -3288,64 +3273,30 @@ body:not(.prospectus-active) #mobileModeToggle {
     font-size: 3.5rem;
     letter-spacing: -1px;
     margin-bottom: 10px;
-    color: var(--hoef-dark);
+    color: #0F172A;
     font-family: 'Playfair Display', serif;
-    transition: color 0.3s ease;
 }
 .title-page-subtitle {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
-    color: var(--hoef-gold);
+    color: #3B82F6;
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: 40px;
-    transition: color 0.3s ease;
 }
 
-/* Light Title Page Theme */
-#title-page {
-    background: var(--hoef-bg);
-}
-#title-page .title-page-headline {
-    color: var(--hoef-dark);
-}
-#title-page .title-page-subtitle {
-    color: var(--hoef-gold);
-}
+/* Title Page Button - Always Light Theme */
 #title-page .btn-title {
     background: transparent;
-    border-color: var(--hoef-border);
-    color: var(--hoef-dark);
+    border-color: #E2E8F0;
+    color: #0F172A;
 }
 #title-page .btn-title:hover {
-    background: var(--hoef-gold-subtle);
-    border-color: var(--hoef-gold);
-    color: var(--hoef-gold);
+    background: rgba(59, 130, 246, 0.10);
+    border-color: #3B82F6;
+    color: #3B82F6;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-}
-
-/* Dark Mode Title Page */
-[data-theme="dark"] #title-page {
-    background: var(--hoef-bg);
-}
-[data-theme="dark"] #title-page .title-page-headline {
-    color: var(--hoef-dark);
-}
-[data-theme="dark"] #title-page .title-page-subtitle {
-    color: var(--hoef-gold);
-}
-[data-theme="dark"] #title-page .btn-title {
-    background: transparent;
-    border-color: var(--hoef-border);
-    color: var(--hoef-text);
-}
-[data-theme="dark"] #title-page .btn-title:hover {
-    background: var(--hoef-gold-subtle);
-    border-color: var(--hoef-gold);
-    color: var(--hoef-gold);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
 }
 .btn-title { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(145deg, var(--hoef-panel) 0%, var(--hoef-bg) 50%, #F0EEE9 100%); border: 1.5px solid var(--hoef-border); color: var(--hoef-dark); padding: 16px 32px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 8px; cursor: pointer; transition: all 0.3s var(--premium-ease); box-shadow: 0 4px 12px rgba(26, 26, 26, 0.06), inset 0 1px 0 rgba(255,255,255,0.8); }
 .btn-title:hover { background: linear-gradient(145deg, var(--hoef-gold) 0%, #d4af37 100%); border-color: var(--hoef-gold); color: var(--hoef-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(191, 161, 95, 0.25), 0 2px 8px rgba(26, 26, 26, 0.1); }
