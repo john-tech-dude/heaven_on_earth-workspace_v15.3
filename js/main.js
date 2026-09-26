@@ -720,10 +720,10 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    const themeIcon = document.querySelector('.theme-icon');
-    if (themeIcon) {
-        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
+    const themeIcons = document.querySelectorAll('.theme-icon');
+    themeIcons.forEach(icon => {
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    });
 }
 
 // Crown-Down Architecture Modal Functions
